@@ -1,5 +1,5 @@
 <template>
-    <nav class="c-nav">
+    <nav class="c-nav bg-white">
         <div class="c-nav__header">
             <button>
                 <svg height="13.224941913898164" width="18">
@@ -15,8 +15,8 @@
         <div class="c-nav__user">
         </div>
         <ul class="c-nav__menu">
-            <li class="c-nav__menuitem">
-                <a href=""></a>
+            <li class="c-nav__menuitem" v-for="(item, index) in menuListItem" :key="index">
+                <a href="#">{{item.title}}</a>
             </li>
         </ul>
     </nav>
@@ -41,6 +41,13 @@
     .c-nav {
         grid-area: nav;
         width: 215px;
+        transition: width .3s linear;
     }
     .c-nav.is-closed { width: 80px; }
+
+    .c-nav__header {
+        padding: 30px;
+        display: flex;
+        justify-content: left;
+    }
 </style>
