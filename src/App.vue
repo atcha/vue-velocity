@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Nav menu-list-item="menuListItems" user="user"></Nav>
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -7,11 +8,28 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Nav from './components/Nav'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    Nav
+  },
+  data () {
+    return {
+      menuListItems: [
+        {
+          icon: "",
+          title: "Overview"
+        }
+      ],
+      user: {
+        avatar: "",
+        firstName: "Joan",
+        lastName: "Wilkins"
+      }
+    }
   }
 }
 </script>
@@ -23,6 +41,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 80px 1fr ;
+  grid-template-areas: "nav head"
+                        "nav main";
 }
 </style>
