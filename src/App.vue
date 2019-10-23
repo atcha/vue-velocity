@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Nav menu-list-item="menuListItems" user="user"></Nav>
+    <Nav :menu-list-item="menuListItems" :user="user"></Nav>
     <header class="bg-white flex">
       <a class="inline-flex items-center ml-10" href="/">
         <img alt="Velocity" src="./assets/logo.png" height="24" width="22">
@@ -27,18 +27,23 @@ export default {
     return {
       menuListItems: [
         {
+          id: 0,
           icon: "",
-          title: "Overview"
+          title: "Overview",
+          isActive: "true"
         },
         {
+          id: 1,
           icon: "",
           title: "Analitycs"
         },
         {
+          id: 2,
           icon: "",
           title: "Vehicles"
         },
         {
+          id: 3,
           icon: "",
           title: "Service"
         }
