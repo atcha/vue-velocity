@@ -28,29 +28,44 @@ export default {
       menuListItems: [
         {
           id: 0,
-          icon: "",
+          icon: "#c-icon-dashboard",
           title: "Overview",
           isActive: "true"
         },
         {
           id: 1,
-          icon: "",
+          icon: "#c-icon-analytics",
           title: "Analitycs"
         },
         {
           id: 2,
-          icon: "",
+          icon: "#c-icon-vehicles",
           title: "Vehicles"
         },
         {
           id: 3,
-          icon: "",
+          icon: "#c-icon-service",
           title: "Service"
+        },
+        {
+          id: 4,
+          icon: "#c-icon-map",
+          title: "Map"
+        },
+        {
+          id: 5,
+          icon: "#c-icon-chat",
+          title: "Chat"
+        },
+        {
+          id: 6,
+          icon: "#c-icon-settings",
+          title: "Settings"
         }
       ],
       user: {
         avatar: "",
-        firstName: "Joan",
+        firstName: "#c-icon-Joan",
         lastName: "Wilkins"
       }
     }
