@@ -4,7 +4,7 @@
             <button @click="isClosed = !isClosed">
                 <svg xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                     height="13.224941913898164" width="18">
+                     height="24" width="24">
                     <use xlink:href="#c-icon-menu"></use>
                 </svg>
             </button>
@@ -14,13 +14,14 @@
         </div>
         <ul class="c-nav__menu">
             <li class="c-nav__menuitem" v-for="item in menuListItem" :key="item.id">
-                <a href="#" :class="{'active': item.isActive}" class="block py-4 px-8 border-l-3 border-solid border-transparent text-gray hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
+                <a href="#" :class="{'active': item.isActive}" class="flex py-4 px-6 border-l-3 border-solid border-transparent text-gray hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                         height="13.224941913898164" width="18">
+                         height="24"
+                         width="24" class="fill-current">
                         <use v-bind="{'xlink:href': item.icon}"></use>
                     </svg>
-                    <span>{{ item.title }}</span>
+                    <span class="ml-3">{{ item.title }}</span>
                 </a>
             </li>
         </ul>
@@ -47,7 +48,13 @@
 </script>
 
 <style>
-    .c-nav { grid-area: nav }
+    .c-nav {
+        grid-area: nav;
+        width: 215px;
+        transition: width .25s cubic-bezier(0.4,0.0,0.2,1);
+        overflow: hidden;
+    }
+    .c-nav.is-closed { width: 80px; }
 
     .c-nav__header {
         padding: 30px;
@@ -62,10 +69,17 @@
 
     .c-nav__menuitem a {
         width: 215px;
-        transition: width .25s cubic-bezier(0.4,0.0,0.2,1), background-color .25s cubic-bezier(0.4,0.0,0.2,1);
-        overflow: hidden;
+        transition: width .25s cubic-bezier(0.4,0.0,0.2,1),
+                    background-color .25s cubic-bezier(0.4,0.0,0.2,1),
+                    color .25s cubic-bezier(0.4,0.0,0.2,1);
     }
-    .c-nav__menuitem a span { transition: visibility .2s cubic-bezier(0.4,0.0,0.2,1) }
-    .c-nav.is-closed .c-nav__menuitem a { width: 80px }
-    .c-nav.is-closed .c-nav__menuitem a span { visibility: hidden }
+    .c-nav__menuitem a svg {
+        width: 24px;
+        height: 24px;
+    }
+    .c-nav .c-nav__menuitem a span { transition: visibility .10s .25s cubic-bezier(0.4,0.0,0.2,1); }
+    .c-nav.is-closed .c-nav__menuitem a span {
+        visibility: hidden;
+        transition: visibility .25s cubic-bezier(0.4,0.0,0.2,1);
+    }
 </style>
