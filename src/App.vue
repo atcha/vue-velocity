@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <Nav :menu-list-item="menuListItems" :user="user"></Nav>
-    <header class="bg-white flex">
+    <header class="bg-white flex justify-between">
       <a class="inline-flex items-center ml-10" href="/">
         <img alt="Velocity" src="./assets/logo.png" height="24" width="22">
         <span class="ml-3">Velocity</span>
       </a>
+      <div class="flex">
+      </div>
     </header>
     <main>
       <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -64,9 +66,13 @@ export default {
         }
       ],
       user: {
-        avatar: "",
-        firstName: "#c-icon-Joan",
-        lastName: "Wilkins"
+        img: {
+          src: require('./assets/img/avatar.png'),
+          alt: 'avatar'
+        },
+        firstName: "Anna",
+        lastName: "Black",
+        professionnalFunction: "Sr. Customer Manager"
       }
     }
   }

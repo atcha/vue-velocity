@@ -10,11 +10,16 @@
             </button>
         </div>
         <div class="c-nav__user">
-
+            <avatar  :class="{ 'hidden': isClosed }"
+                     type="nav"
+                     :name="personName"
+                     :img="this.user.img"
+                     :professionnal-function="this.user.professionnalFunction">
+            </avatar>
         </div>
         <ul class="c-nav__menu">
             <li class="c-nav__menuitem" v-for="item in menuListItem" :key="item.id">
-                <a href="#" :class="{'active': item.isActive}" class="flex py-4 px-6 text-gray hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
+                <a href="#" :class="{'active': item.isActive}" class="flex py-4 px-6 text-gray-1 hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink"
                          height="24"
@@ -29,20 +34,20 @@
 </template>
 
 <script>
+    import Avatar from "./Avatar";
+
     export default {
         name: 'Nav',
+        components: { Avatar },
         props: {
             menuListItem: Array,
-            User: Object
+            user: Object
         },
         data () {
             return {
-                isClosed: true
+                isClosed: true,
+                personName: this.user.firstName + ' ' + this.user.lastName
             }
-        },
-        mounted() {
-            // eslint-disable-next-line no-console
-            console.log(this.menuListItem)
         }
     }
 </script>
