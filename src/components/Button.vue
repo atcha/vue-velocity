@@ -1,5 +1,5 @@
 <template>
-    <a href="">
+    <a :to="url" :alt="alt">
         <slot></slot>
     </a>
 </template>
@@ -11,8 +11,17 @@
             color: { type: String },
             textColor: { type: String },
             label: { type: String },
-            round: { type: Boolean }
-        }
+            round: { type: Boolean },
+            flat: { type: Boolean },
+            url: { type: String },
+            alt: { type: String }
+        },
+        data () {
+            return {
+
+            }
+        },
+
     }
 </script>
 
