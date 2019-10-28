@@ -14,7 +14,7 @@
         </div>
         <ul class="c-nav__menu">
             <li class="c-nav__menuitem" v-for="item in menuListItem" :key="item.id">
-                <a href="#" :class="{'active': item.isActive}" class="flex py-4 px-6 border-l-3 border-solid border-transparent text-gray hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
+                <a href="#" :class="{'active': item.isActive}" class="flex py-4 px-6 text-gray hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink"
                          height="24"
@@ -69,7 +69,8 @@
 
     .c-nav__menuitem a {
         width: 215px;
-        transition: width .25s cubic-bezier(0.4,0.0,0.2,1),
+        transition: border .10s linear,
+                    width .25s cubic-bezier(0.4,0.0,0.2,1),
                     background-color .25s cubic-bezier(0.4,0.0,0.2,1),
                     color .25s cubic-bezier(0.4,0.0,0.2,1);
     }
