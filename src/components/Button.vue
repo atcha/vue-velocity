@@ -1,5 +1,8 @@
 <template>
-    <button type="button" :to="url" :alt="alt" :class="classes">
+    <button type="button"
+            :to="url"
+            :alt="alt"
+            :class="classes">
         <slot></slot>
     </button>
 </template>
@@ -33,7 +36,8 @@
                         colors = `text-${this.textColor || this.color} hover:text-${this.hoverTextColor || this.hoverColor}`
                     }
                     else {
-                        colors = `bg-${this.color} text-${this.textColor || 'white'}`
+                        colors = `bg-${this.color} text-${this.textColor || 'white'} ${'hover:bg-' + this.hoverColor || ''} hover:text-${this.hoverTextColor || this.hoverColor}`
+
                     }
                 }
                 else if (this.textColor) {
@@ -43,7 +47,8 @@
                     }
                 }
 
-                return (this.round === true ? 'rounded-full' : '') +
+                return (this.round === true ? 'rounded-full p-0' : 'px-4 py-2') +
+                (this.rounded === true ? ' rounded' : '') +
                 (colors !== void 0 ? ' ' + colors : '')
 
             }

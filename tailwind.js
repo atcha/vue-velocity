@@ -48,6 +48,13 @@ module.exports = {
       outline: '0 0 0 3px rgba(66,153,225,0.5)',
       focus: '0 0 0 3px rgba(66,153,225,0.5)',
       'none': 'none'
+    },
+    extend: {
+      spacing: {
+         '72': '18rem',
+         '84': '21rem',
+         '96': '24rem'
+      }
     }
   },
   variants: {
