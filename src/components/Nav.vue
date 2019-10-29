@@ -19,7 +19,7 @@
         </div>
         <ul class="c-nav__menu">
             <li class="c-nav__menuitem" v-for="item in menuListItem" :key="item.id">
-                <a :to="item.url" :class="{'active': item.isActive}" class="flex py-4 px-6 text-gray-1 hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
+                <router-link :to="item.url" :class="{'active': item.isActive}" class="flex py-4 px-6 text-gray-1 hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink"
                          height="24"
@@ -27,7 +27,7 @@
                         <use v-bind="{'xlink:href': item.icon}"></use>
                     </svg>
                     <span class="ml-3">{{ item.title }}</span>
-                </a>
+                </router-link>
             </li>
         </ul>
     </nav>

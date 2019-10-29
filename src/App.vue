@@ -17,9 +17,7 @@
         </Button>
       </div>
     </header>
-    <main>
-      <router-view />
-    </main>
+    <router-view />
   </div>
 </template>
 
