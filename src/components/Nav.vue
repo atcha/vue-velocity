@@ -14,6 +14,7 @@
                      type="nav"
                      :name="personName"
                      :img="this.user.img"
+                     :img-size="{w:26, h:26}"
                      :professionnal-function="this.user.professionnalFunction">
             </avatar>
         </div>

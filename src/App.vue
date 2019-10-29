@@ -1,37 +1,70 @@
 <template>
   <div id="app">
     <Nav :menu-list-item="menuListItems" :user="user"></Nav>
-    <header class="bg-white flex justify-between">
-      <a class="inline-flex items-center ml-10" to="/">
+    <header class="bg-white flex justify-between px-20 border-b border-gray-3 border-solid">
+      <a class="inline-flex items-center" to="/">
         <img alt="Velocity" src="./assets/logo.png" height="24" width="22">
         <span class="ml-3">Velocity</span>
       </a>
       <div class="flex items-center">
-        <Button @click="openSideBar = !openSideBar" round >
+        <Button @click.native="openSideBar"
+                class="mx-2 relative"
+                text-color="gray-1"
+                hover-text-color="primary-normal"
+                round>
+          <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-primary-normal"></span>
           <svg xmlns="http://www.w3.org/2000/svg"
                xmlns:xlink="http://www.w3.org/1999/xlink"
-               height="24"
-               width="24" class="fill-current">
+               height="35"
+               width="35"
+               class="fill-current">
+            <use xlink:href="#c-icon-bell"></use>
+          </svg>
+        </Button>
+        <Button @click.native="openSideBar"
+                class="mx-2 relative"
+                text-color="gray-1"
+                hover-text-color="primary-normal"
+                round>
+          <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-primary-normal"></span>
+          <svg xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               height="35"
+               width="35"
+               class="fill-current">
             <use xlink:href="#c-icon-chat"></use>
           </svg>
+        </Button>
+        <Button @click.native="openSideBar"
+                class="mx-2"
+                round>
+          <avatar type="simple"
+                  :img="user.img"
+                  img-class="h-8 w-8 rounded-full">
+          </avatar>
         </Button>
       </div>
     </header>
     <main>
       <router-view />
     </main>
+    <SideBar :is-visible="isOpenSideBar"></SideBar>
   </div>
 </template>
 
 <script>
   import Nav from './components/Nav'
   import Button from "./components/Button"
+  import Avatar from "./components/Avatar"
+  import SideBar from "./components/SideBar"
 
   export default {
     name: 'app',
     components: {
       Nav,
-      Button
+      Button,
+      Avatar,
+      SideBar
     },
     data () {
       return {
@@ -89,7 +122,12 @@
           lastName: "Black",
           professionnalFunction: "Sr. Customer Manager"
         },
-        openSideBar: false
+        isOpenSideBar: false
+      }
+    },
+    methods: {
+      openSideBar () {
+        this.isOpenSideBar = !this.isOpenSideBar;
       }
     }
   }
