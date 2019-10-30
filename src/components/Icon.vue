@@ -1,5 +1,6 @@
 <template>
-    <span class="p-2" :class="classes">
+    <span class="relative p-2" :class="classes">
+        <span v-if="notify" class="absolute top-0 right-8 h-1 w-1 rounded-full bg-primary-normal border border-solid border-primary-normal"></span>
         <svg xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
              class="fill-current">
