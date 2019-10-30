@@ -13,13 +13,14 @@
                     hover-color="gray-3"
                     text-color="black-3"
                     hover-text-color="black-2"
-                    rounded>
+                    rounded
+                    @click.native="clearNotifications">
                 Clear
             </Button>
         </header>
-        <ul>
+        <ul v-if="notifications.length > 0">
             <li v-for="(notification, index) in notifications" :key="index" class="border-b border-gray-3 border-solid">
-                <Notification :type="notification.type"
+                <Notification class="cursor-pointer" :type="notification.type"
                               :content="notification.content"
                               :time="notification.time" />
             </li>
@@ -67,6 +68,11 @@
                         time: new Date()
                     },
                 ]
+            }
+        },
+        methods: {
+            clearNotifications () {
+                this.notifications = [];
             }
         }
     }
