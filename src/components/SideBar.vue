@@ -1,12 +1,12 @@
 <template>
-    <aside class="fixed w-72 h-screen bg-white border-l border-gray-3 border-solid shadow-2l" :class="{ 'is-open': isVisible }">
+    <article class="fixed w-72 h-screen bg-white border-l border-gray-3 border-solid shadow-2l" :class="{ 'is-open': isVisible }">
         <header class="flex justify-between items-center px-6 py-8 border-b border-gray-3 border-solid">
             <div class="flex flex-col items-start">
                 <div class="flex items-center">
-                    <span class="text-black-1 text-xl mr-2">81°F</span>
+                    <span class="text-black-1 text-3xl mr-2">81°F</span>
                     <img src="../assets/img/sidebar/sun.png" alt="Sun icon">
                 </div>
-                <p class="text-gray-1">New York, NY</p>
+                <p class="text-gray-0">New York, NY</p>
             </div>
             <Button class="w-24"
                     color="gray-2"
@@ -17,32 +17,70 @@
                 Clear
             </Button>
         </header>
-    </aside>
+        <ul>
+            <li v-for="(notification, index) in notifications" :key="index" class="border-b border-gray-3 border-solid">
+                <Notification :type="notification.type"
+                              :content="notification.content"
+                              :time="notification.time" />
+            </li>
+        </ul>
+    </article>
 </template>
 
 <script>
     import Button from "./Button";
+    import Notification from "./Notification";
+
     export default {
         name: "SideBar",
-        components: { Button },
+        components: {
+            Button,
+            Notification
+        },
         props: {
             isVisible: {
                 type: Boolean,
                 default: false
+            }
+        },
+        data () {
+            return {
+                notifications: [
+                    {
+                        type: 'message',
+                        content: 'How may we assist you today?',
+                        time: new Date()
+                    },
+                    {
+                        type: 'application',
+                        content: 'Application for Kate Smith is waiting for your approval.',
+                        time: new Date()
+                    },
+                    {
+                        type: 'application',
+                        content: 'To process your order, i\'ll need your full personnal etc etc',
+                        time: new Date()
+                    },
+                    {
+                        type: 'complaint',
+                        content: 'We\'re so sorry you had a bad experience!',
+                        time: new Date()
+                    },
+                ]
             }
         }
     }
 </script>
 
 <style scoped>
-    aside {
+    article {
         top: 80px;
         right: -16rem;
         opacity: 0;
         transition: transform .25s cubic-bezier(0.4,0.0,0.2,1),
                     opacity .30s linear;
     }
-    aside.is-open {
+    article.is-open {
         transform: translateX(-16rem);
         opacity: 1;
     }
