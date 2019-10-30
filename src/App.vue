@@ -45,9 +45,7 @@
         </Button>
       </div>
     </header>
-    <main>
-      <router-view />
-    </main>
+    <router-view />
     <SideBar :is-visible="isOpenSideBar"></SideBar>
   </div>
 </template>
