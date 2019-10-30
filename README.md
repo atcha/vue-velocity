@@ -1,6 +1,8 @@
 =======
 # vue-velocity
-Component library based on velocity UI kit by InVision
+Component library based on velocity UI kit by InVision : https://www.invisionapp.com/inside-design/design-resources/design-system-dashboard-ui-kit/
+
+This project is made with Vuejs, Vue-cli and TailwindCss
 
 ## Project setup
 ```
