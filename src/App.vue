@@ -71,8 +71,7 @@
             id: 0,
             icon: "#c-icon-dashboard",
             title: "Overview",
-            isActive: "true",
-            url: "/dashboard"
+            url: "/"
           },
           {
             id: 1,
@@ -151,6 +150,5 @@
   }
   main {
     grid-area: main;
-    display: flex;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="flex p-20">
         <div class="flex justify-between">
             <div>
                 <h1>Vehicules Dashboard</h1>
@@ -16,7 +16,7 @@
 <script>
     import Button from "../components/Button";
     export default {
-        name: "Dashboard",
+        name: "Vehicles",
         components: {
             Button
         }

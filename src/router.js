@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './pages/Home.vue';
-import Dashboard from "./pages/Dashboard";
+import Vehicles from "./pages/Vehicles";
 
 Vue.use(Router);
 
 const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
+    linkExactActiveClass: 'is-active',
     routes: [
         {
             path: '/',
@@ -15,9 +16,9 @@ const router = new Router({
             component: Home
         },
         {
-            path: '/dashboard',
-            name: 'dashboard',
-            component: Dashboard
+            path: '/vehicles',
+            name: 'vehicles',
+            component: Vehicles
         }
     ]
 });

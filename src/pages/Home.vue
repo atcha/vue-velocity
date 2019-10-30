@@ -1,7 +1,7 @@
 <template>
-    <div class="flex p-20">
+    <main class="flex p-20">
         <Card :img="operatingCard.img" :title="operatingCard.title" :content="operatingCard.content"></Card>
-    </div>
+    </main>
 </template>
 
 <script>

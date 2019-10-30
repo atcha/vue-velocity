@@ -89,4 +89,9 @@
         visibility: hidden;
         transition: visibility .25s cubic-bezier(0.4,0.0,0.2,1);
     }
+
+    /* Actve state */
+    .c-nav__menuitem a.is-active {
+        @apply  border-l-3 border-solid border-primary-normal bg-primary-light text-primary-normal;
+    }
 </style>
