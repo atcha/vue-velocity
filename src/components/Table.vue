@@ -5,7 +5,7 @@
             <tr>
                 <th v-for="column in columns"
                     :key="column.name">
-                    <div class="flex items-center">
+                    <div class="flex items-center justify-center">
                         <span class="uppercase text-gray-1 text-sm">{{ column.label }}</span>
                         <Button class="c-btn-sortable text-black-3"
                                 v-if="column.sortable"
@@ -24,19 +24,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="mb-3 bg-white border border-solid border-gray-3"
+            <tr class="mb-3 bg-white border border-solid border-gray-3 shadow-2l"
                 v-for="(item, index) in formatedData" :key="index">
-                <td class="p-5" v-for="(column) in columns" :key="column.name">
-                    <span>{{ item[column.name] }}</span>
-                </td>
-                <td class="p-5" v-if="actions.length > 0">
-                    <Button v-for="(action, index) in actions"
-                            :key="index"
-                            class="text-primary-normal hover:text-black-1 hover:bg-primary-light"
-                            @click.native="action.function"
-                            rounded>
-                        {{ action.label }}
-                    </Button>
+                <td class="p-5" v-for="column in columns" :key="column.name">
+                    <template v-if="'actions' in column">
+                        <Button v-for="(action, index) in column.actions"
+                                :key="index"
+                                class="text-primary-normal hover:text-black-1 hover:bg-primary-light"
+                                @click.native="action.function"
+                                rounded>
+                            {{ action.label }}
+                        </Button>
+                    </template>
+                    <template v-else>
+                        <span>{{ item[column.name] }}</span>
+                    </template>
                 </td>
             </tr>
             </tbody>
@@ -56,8 +58,8 @@
                 required: Boolean,
                 label: String,
                 sortable: Boolean,
+                actions: Object
             },
-            actions: Array,
             data: Array,
             filterKey: String
         },

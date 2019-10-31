@@ -134,7 +134,7 @@
     text-align: center;
     color: #2c3e50;
     display: grid;
-    height: 100vh;
+    height: 100%;
     background-color: #F4F6FC;
     grid-template-columns: auto 1fr;
     grid-template-rows: 80px 1fr ;

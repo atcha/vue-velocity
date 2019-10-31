@@ -10,6 +10,7 @@
             <h2 class="text-black-1 text-xl" v-if="title">{{ title }}</h2>
             <p class="text-gray-1" v-if="content">{{ content }}</p>
         </div>
+        <slot></slot>
     </section>
 </template>
 
