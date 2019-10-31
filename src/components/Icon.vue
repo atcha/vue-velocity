@@ -5,7 +5,7 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              class="fill-current">
             <use v-bind="{'xlink:href' : '#c-icon-' + name }"></use>
-          </svg>
+        </svg>
     </span>
 </template>
 

@@ -37,7 +37,6 @@
                     }
                     else {
                         colors = `bg-${this.color} text-${this.textColor || 'white'} ${'hover:bg-' + this.hoverColor || ''} hover:text-${this.hoverTextColor || this.hoverColor}`
-
                     }
                 }
                 else if (this.textColor) {

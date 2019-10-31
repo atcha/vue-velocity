@@ -145,7 +145,7 @@
     grid-template-areas: "nav head"
     "nav main";
   }
-  header {
+  #app > header {
     grid-area: head;
   }
   main {

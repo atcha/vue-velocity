@@ -42,7 +42,8 @@
                         { name: 'manage', label: 'Manage', function: this.manageVehicles() }
                     ],
                     datas: [
-                        { id: 'Spire', model: 'Tesla Model X', service: new Date('08/21/2018'), trip: 774, energy: '450 kWh' }
+                        { id: 'Spire', model: 'Tesla Model X', service: new Date('08/21/2018'), trip: 774, energy: '450 kWh' },
+                        { id: 'Eos', model: 'Volvo Intellisafe', service: new Date('06/12/2018'), trip: 825, energy: '321 kWh' }
                     ]
                 }
             }
