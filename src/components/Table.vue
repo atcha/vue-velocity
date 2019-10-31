@@ -7,9 +7,8 @@
                     :key="column.name">
                     <div class="flex items-center">
                         <span class="uppercase text-gray-1 text-sm">{{ column.label }}</span>
-                        <Button class="c-btn-sortable"
+                        <Button class="c-btn-sortable text-black-3"
                                 v-if="column.sortable"
-                                text-color="black-3"
                                 round
                                 @click.native="sortBy(column.name)">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -33,10 +32,7 @@
                 <td class="p-5" v-if="actions.length > 0">
                     <Button v-for="(action, index) in actions"
                             :key="index"
-                            text-color="primary-normal"
-                            hover-text-color="black-1"
-                            color="transparent"
-                            hover-color="primary-light"
+                            class="text-primary-normal hover:text-black-1 hover:bg-primary-light"
                             @click.native="action.function"
                             rounded>
                         {{ action.label }}

@@ -23,27 +23,7 @@
         },
         computed: {
             classes () {
-                let colors
-
-                if (this.color !== void 0) {
-                    if (this.flat === true) {
-                        colors = `text-${this.textColor || this.color} hover:text-${this.hoverTextColor || this.hoverColor}`
-                    }
-                    else {
-                        colors = `bg-${this.color} text-${this.textColor || 'white'} ${'hover:bg-' + this.hoverColor || ''} hover:text-${this.hoverTextColor || this.hoverColor}`
-
-                    }
-                }
-                else if (this.textColor) {
-                    colors = `text-${this.textColor}`
-                    if (this.hoverTextColor) {
-                        colors += ` hover:text-${this.hoverTextColor}`
-                    }
-                }
-
-                return (this.round === true ? 'rounded-full p-0' : 'px-4 py-2') +
-                    (colors !== void 0 ? ' ' + colors : '')
-
+                return (this.round === true ? 'rounded-full p-0' : 'px-4 py-2')
             }
         }
     }

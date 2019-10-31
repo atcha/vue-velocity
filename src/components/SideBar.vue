@@ -8,11 +8,7 @@
                 </div>
                 <p class="text-gray-0">New York, NY</p>
             </div>
-            <Button class="w-24"
-                    color="gray-2"
-                    hover-color="gray-3"
-                    text-color="black-3"
-                    hover-text-color="black-2"
+            <Button class="w-24 bg-gray-2 text-black-3 hover:bg-gray-3 hover:text-black-2"
                     rounded
                     @click.native="clearNotifications">
                 Clear

@@ -8,9 +8,7 @@
       </a>
       <div class="flex items-center">
         <Button @click.native="openSideBar"
-                class="mx-2 relative"
-                text-color="gray-1"
-                hover-text-color="primary-normal"
+                class="mx-2 relative text-gray-1 hover:text-primary-normal"
                 round>
           <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-primary-normal"></span>
           <svg xmlns="http://www.w3.org/2000/svg"
@@ -22,9 +20,7 @@
           </svg>
         </Button>
         <Button @click.native="openSideBar"
-                class="mx-2 relative"
-                text-color="gray-1"
-                hover-text-color="primary-normal"
+                class="mx-2 relative text-gray-1 hover:text-primary-normal"
                 round>
           <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-primary-normal"></span>
           <svg xmlns="http://www.w3.org/2000/svg"

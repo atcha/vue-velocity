@@ -10,17 +10,19 @@
             </button>
         </div>
         <div class="c-nav__user">
-            <avatar  :class="{ 'hidden': isClosed }"
-                     type="nav"
-                     :name="personName"
-                     :img="this.user.img"
-                     :img-size="{w:26, h:26}"
-                     :professionnal-function="this.user.professionnalFunction">
+            <avatar :class="{ 'hidden': isClosed }"
+                    type="nav"
+                    :name="personName"
+                    :img="this.user.img"
+                    :img-size="{w:26, h:26}"
+                    :professionnal-function="this.user.professionnalFunction">
             </avatar>
         </div>
         <ul class="c-nav__menu">
             <li class="c-nav__menuitem" v-for="item in menuListItem" :key="item.id">
-                <router-link :to="item.url" :class="{'active': item.isActive}" class="flex py-4 px-6 text-gray-1 hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
+                <router-link :to="item.url"
+                             :class="{'active': item.isActive}"
+                             class="flex py-4 px-6 text-gray-1 hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink"
                          height="24"

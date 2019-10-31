@@ -2,8 +2,8 @@
     <div class="flex items-center px-2 py-4 hover:bg-primary-light">
         <Icon class="mx-1 flex-shrink-0 w-8 h-8"
               :name="icon"
-              text-color="primary-normal"
-              color="gray-1"
+              text-color="text-primary-normal"
+              color="bg-gray-1"
               round
               notify />
         <div class="flex flex-col items-start mx-3">
