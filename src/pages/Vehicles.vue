@@ -15,10 +15,14 @@
                    :data="vehiclesList.datas">
             </Table>
         </div>
-        <Card class="w-1/4">
-            <header>
-                <h2>Fleet activity map</h2>
+        <Card class="w-1/4 flex flex-col items-start">
+            <header class="pb-10">
+                <h2 class="uppercase text-gray-1">Fleet activity map</h2>
             </header>
+            <section>
+                <h3 class="text-black-1">Trips taken</h3>
+                <Slider></Slider>
+            </section>
         </Card>
     </main>
 </template>
@@ -26,12 +30,14 @@
 <script>
     import Button from "../components/Button";
     import Card from "../components/Card";
+    import Slider from "../components/Slider";
     import Table from "../components/Table";
     export default {
         name: "Vehicles",
         components: {
             Button,
             Card,
+            Slider,
             Table
         },
         data () {

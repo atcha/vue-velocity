@@ -1,5 +1,5 @@
 <template>
-    <section class="flex p-10 bg-white shadow-2l">
+    <aside class="p-10 bg-white shadow-2l">
         <img v-if="img"
              class="mr-10"
              :src="img.url"
@@ -11,7 +11,7 @@
             <p class="text-gray-1" v-if="content">{{ content }}</p>
         </div>
         <slot></slot>
-    </section>
+    </aside>
 </template>
 
 <script>
