@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center px-2 py-4">
+    <div class="flex items-center px-2 py-4 hover:bg-primary-light">
         <Icon class="mx-1 flex-shrink-0 w-8 h-8"
               :name="icon"
               text-color="primary-normal"
@@ -50,6 +50,9 @@
 </script>
 
 <style scoped>
+    div:first-child {
+        transition: all .25s linear;
+    }
     .content {
         overflow: hidden;
         text-overflow: ellipsis;
