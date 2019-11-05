@@ -2,7 +2,8 @@
     <div class="c-avatar" :class="avatarClass">
         <template v-if="type === 'simple'">
             <div class="c-avatar__picture">
-                <img :src="img.src" :alt="img.alt" :class="imgClass" />
+                <img v-if="img" :src="img.src" :alt="img.alt" class="rounded-full" :class="imgClass" />
+                <span v-else class="block bg-primary-light rounded-full" :class="avatarClass"></span>
             </div>
         </template>
         <template v-else-if="type === 'nav'">
@@ -43,7 +44,8 @@
             img: { type: Object },
             imgClass: { type: String },
             name: { type: String },
-            professionnalFunction: { type: String }
+            professionnalFunction: { type: String },
+            size: { type: Number }
         },
         data () {
             return {
@@ -61,6 +63,10 @@
                 case 'vertical':
                     this.avatarClass = 'flex flex-col';
                     break;
+            }
+
+            if (this.size) {
+              this.avatarClass += ' w-' + this.size + ' h-' + this.size;
             }
         }
     }

@@ -37,7 +37,15 @@
                         </Button>
                     </template>
                     <template v-else>
-                        <span>{{ item[column.name] }}</span>
+                        <div v-if="typeof item[column.name] === 'object' " class="flex items-center justify-start">
+                            <Avatar v-if="item[column.name].img" type="simple" :size="avatarSize" :img="item[column.name].img" class="mr-3" />
+                            <Avatar v-else type="simple" :size="avatarSize" class="mr-3" />
+                            <div>
+                                <p class="text-left leading-tight">{{ item[column.name].name }}</p>
+                                <p class="text-left leading-tight text-gray-1">#{{ item[column.name].id }}</p>
+                            </div>
+                        </div>
+                        <span v-else v-html="item[column.name]"></span>
                     </template>
                 </td>
             </tr>
@@ -47,11 +55,15 @@
 </template>
 
 <script>
+    import Avatar from "./Avatar";
     import Button from "./Button";
 
     export default {
         name: "Table",
-        components: {Button},
+        components: {
+          Avatar,
+          Button
+        },
         props: {
             columns: {
                 name: String,
@@ -61,7 +73,8 @@
                 actions: Object
             },
             data: Array,
-            filterKey: String
+            filterKey: String,
+            filter: Object,
         },
         data () {
             let sortOrders = {};
@@ -70,7 +83,8 @@
             });
             return {
                sortKey: '',
-               sortOrders: sortOrders
+               sortOrders: sortOrders,
+               avatarSize: 8
             }
         },
         computed: {
@@ -81,14 +95,38 @@
                 let data = this.data;
 
                 if (filterKey) {
-                    data = data.filter(function (row) {
-                        return Object.keys(row).some(function (key) {
-                            return String(row[key]).toLowerCase().indexOf(filterKey) > -1;
+                    data = data.filter((row) => {
+                        return Object.keys(row).some((key) => {
+                            return String(row[key])
+                                    .toLowerCase()
+                                    .indexOf(filterKey) > -1;
                         })
                     })
                 }
+
+                if(this.filter) {
+                    data = data.filter((row) => {
+                        return Object.keys(row).filter(key => {
+                            return Object.keys(this.filter).forEach((filterKey) => {
+                                if(filterKey === key) {
+                                    // eslint-disable-next-line no-console
+                                    console.log(row[key], this.filter[key], row[key] < this.filter[key]);
+                                    return row[key] < this.filter[key];
+                                }
+                            });
+                        })
+                    });
+
+                    // eslint-disable-next-line no-console
+                    console.log(data);
+
+                    // return Object.keys(data)
+                    //         .filter(key => this.filter(data[key]))
+                    //         .reduce((res, key) => Object.assign(res, { [key]: data[key] }), {} )
+                }
+
                 if (sortKey) {
-                    data = data.slice().sort(function (a, b) {
+                    data = data.slice().sort((a, b) => {
                         a = a[sortKey];
                         b = b[sortKey];
                         return (a === b ? 0 : a > b ? 1 : -1) * order;
