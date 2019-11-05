@@ -13,10 +13,6 @@
     export default {
         name: "Icon",
         props: {
-            color: String,
-            hoverColor: String,
-            textColor: String,
-            hoverTextColor: String,
             notify: Boolean,
             round: Boolean,
             name: String
