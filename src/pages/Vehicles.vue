@@ -12,8 +12,7 @@
             </div>
             <Table :columns="vehiclesList.columns"
                    :actions="vehiclesList.actions"
-                   :data="vehiclesList.datas"
-                   :filter="filters"
+                   :data="filteredList"
             >
             </Table>
         </div>
@@ -21,13 +20,33 @@
             <header class="pb-10">
                 <h2 class="uppercase text-gray-1">Fleet activity map</h2>
             </header>
-            <section>
-                <div>
-                    <div class="flex items-center justify-between">
+            <section class="w-full">
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-2">
                         <h3 class="text-black-1">Trips taken</h3>
-                        <p class="text-gray-1">{{ filters.trip }}</p>
+                        <p class="text-gray-1">{{ filters.trip.data }}</p>
                     </div>
-                    <Slider min-value="1" max-value="1200" v-model="filters.trip"></Slider>
+                    <Slider min-value="1" max-value="1200" v-model="filters.trip.data"></Slider>
+                </div>
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-black-1">Service due</h3>
+                        <p class="text-gray-1">{{ filters.service.data }}</p>
+                    </div>
+                    <Slider min-value="1" max-value="25" v-model="filters.service.data"></Slider>
+                </div>
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-black-1">Vehicle model</h3>
+                    </div>
+                    <multiselect
+                            v-model="filters.models.selected"
+                            :options="filters.models.data"
+                            :multiple="true"
+                            :close-on-select="false"
+                            :clear-on-select="false"
+                            placeholder="Pick some models">
+                    </multiselect>
                 </div>
             </section>
         </Card>
@@ -35,75 +54,174 @@
 </template>
 
 <script>
-    import Button from "../components/Button";
-    import Card from "../components/Card";
-    import Slider from "../components/Slider";
-    import Table from "../components/Table";
-    export default {
-        name: "Vehicles",
-        components: {
-            Button,
-            Card,
-            Slider,
-            Table
-        },
-        data () {
-            return {
-                vehiclesList: {
-                    columns: [
-                        { name: 'id', label: 'Name and id', required: true, sortable: true },
-                        { name: 'model', label: 'Vehicle model', required: true, sortable: true },
-                        { name: 'service', label: 'Next service', required: true, sortable: true },
-                        { name: 'trip', label: 'Trips', required: true, sortable: false },
-                        { name: 'energy', label: 'Energy used', required: false, sortable: true },
-                        { name: 'actions', label: '',
-                            actions: [
-                                {
-                                    name: 'manage', label: 'Manage', function: this.manageVehicles()
-                                }
-                            ]
-                        }
-                    ],
-                    datas: [
-                        {
-                          id: {
-                            id: 12010, name: 'Spire'
-                          },
-                          model: 'Tesla Model X',
-                          service: new Date('08/21/2018'),
-                          trip: 774,
-                          energy: '450 kWh'
-                        },
-                        {
-                          id: {
-                            id: 12011,
-                            name: 'Eos',
-                            img: {
-                              src: require('../assets/img/vehicles/42w.png'),
-                              alt: 'Eos'
-                            }
-                          },
-                          model: 'Volvo Intellisafe',
-                          service: new Date('06/12/2018'),
-                          trip: 825,
-                          energy: '321 kWh'
-                        }
-                    ]
-                },
-                filters: {
-                    trip: 753
+  import Button from "../components/Button";
+  import Card from "../components/Card";
+  import Slider from "../components/Slider";
+  import Table from "../components/Table";
+  import Multiselect from "vue-multiselect";
+
+  export default {
+    name: "Vehicles",
+    components: {
+      Button,
+      Card,
+      Multiselect,
+      Slider,
+      Table
+    },
+    data() {
+      return {
+        vehiclesList: {
+          columns: [
+            {name: 'id', label: 'Name and id', required: true, sortable: true},
+            {name: 'model', label: 'Vehicle model', required: true, sortable: true},
+            {name: 'service', label: 'Next service', required: true, sortable: true},
+            {name: 'trip', label: 'Trips', required: true, sortable: false},
+            {name: 'energy', label: 'Energy used', required: false, sortable: true},
+            {
+              name: 'actions', label: '',
+              actions: [
+                {
+                  name: 'manage', label: 'Manage', function: this.manageVehicles()
                 }
+              ]
             }
+          ],
+          datas: [
+            {
+              id: {
+                id: 12010, name: 'Spire'
+              },
+              model: 'Tesla Model X',
+              service: new Date('08/21/2018'),
+              trip: 774,
+              energy: '450 kWh',
+              serviceTime: 14
+            },
+            {
+              id: {
+                id: 12011,
+                name: 'Eos',
+                img: {
+                  src: require('../assets/img/vehicles/42w.png'),
+                  alt: 'Eos'
+                }
+              },
+              model: 'Volvo Intellisafe',
+              service: new Date('06/12/2018'),
+              trip: 825,
+              energy: '321 kWh',
+              serviceTime: 20
+            },
+            {
+              id: {
+                id: 12012,
+                name: 'Eagle',
+                img: {
+                  src: require('../assets/img/vehicles/42w.png'),
+                  alt: 'Eagle'
+                }
+              },
+              model: 'BMW 7 Series',
+              service: new Date('06/16/2018'),
+              trip: 125,
+              energy: '230 kWh',
+              serviceTime: 3
+            },
+            {
+              id: {
+                id: 12013,
+                name: 'Expedition',
+                img: {
+                  src: require('../assets/img/vehicles/42w.png'),
+                  alt: 'Expedition'
+                }
+              },
+              model: 'Infiniti Q50S',
+              service: new Date('07/02/2018'),
+              trip: 734,
+              energy: '129 kWh',
+              serviceTime: 12
+            },
+            {
+              id: {
+                id: 12014,
+                name: 'Bliss',
+                img: {
+                  src: require('../assets/img/vehicles/42w.png'),
+                  alt: 'Bliss'
+                }
+              },
+              model: 'Audi RS 7',
+              service: new Date('08/27/2018'),
+              trip: 823,
+              energy: '553 kWh',
+              serviceTime: 19
+            }
+          ]
         },
-        methods: {
-            manageVehicles () {
-                // eslint-disable-next-line no-console
-                console.log('Vehicle manage');
-            }
+        filters: {
+          trip: {
+            data: 1,
+            type: 'slider'
+          },
+          service: {
+            data: 1,
+            type: 'slider'
+          },
+          models: {
+            data: [
+              'Tesla Model X',
+              'Volvo Intellisafe',
+              'BMW 7 Series',
+              'Infiniti Q50S',
+              'Audi RS 7',
+              'Tesla Model S'
+            ],
+            selected: null,
+            type: 'multiple-select'
+          }
         }
+      }
+    },
+    computed: {
+      filteredList() {
+        let list = this.vehiclesList;
+        // eslint-disable-next-line no-console
+        console.log(this.filters.models);
+        list = list.datas
+          .filter((row) => row.trip >= this.filters.trip.data)
+          .filter((row) => row.serviceTime >= this.filters.service.data)
+          .filter((row) => {
+            if(this.filters.models.selected && this.filters.models.selected.length > 0 ) {
+              return this.filters.models.selected.includes(row.model)
+            } else {
+              return row;
+            }
+          })
+        return list;
+      }
+    },
+    methods: {
+      manageVehicles() {
+        // eslint-disable-next-line no-console
+        console.log('Vehicle manage');
+      }
     }
+  }
 </script>
 
-<style scoped>
-
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style>
+    .multiselect { @apply text-primary-normal; }
+    .multiselect__select::before { @apply text-gray-1; }
+    .multiselect__tags { @apply border-gray-1; }
+    .multiselect__tag,
+    .multiselect__option--selected.multiselect__option--highlight,
+    .multiselect__option--selected.multiselect__option--highlight::after { @apply bg-primary-normal; }
+    .multiselect__tag-icon::after { @apply text-white; }
+    .multiselect__tag-icon:focus, .multiselect__tag-icon:hover { @apply bg-black-1 text-white; }
+    .multiselect__content-wrapper { @apply border-gray-1; }
+    .multiselect__option--highlight { @apply bg-primary-normal text-white; }
+    .multiselect__option--highlight::after { @apply bg-primary-normal text-white; }
 </style>

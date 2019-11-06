@@ -73,8 +73,7 @@
                 actions: Object
             },
             data: Array,
-            filterKey: String,
-            filter: Object,
+            filterKey: String
         },
         data () {
             let sortOrders = {};
@@ -102,27 +101,6 @@
                                     .indexOf(filterKey) > -1;
                         })
                     })
-                }
-
-                if(this.filter) {
-                    data = data.filter((row) => {
-                        return Object.keys(row).filter(key => {
-                            return Object.keys(this.filter).forEach((filterKey) => {
-                                if(filterKey === key) {
-                                    // eslint-disable-next-line no-console
-                                    console.log(row[key], this.filter[key], row[key] < this.filter[key]);
-                                    return row[key] < this.filter[key];
-                                }
-                            });
-                        })
-                    });
-
-                    // eslint-disable-next-line no-console
-                    console.log(data);
-
-                    // return Object.keys(data)
-                    //         .filter(key => this.filter(data[key]))
-                    //         .reduce((res, key) => Object.assign(res, { [key]: data[key] }), {} )
                 }
 
                 if (sortKey) {
