@@ -48,6 +48,32 @@
                             placeholder="Pick some models">
                     </multiselect>
                 </div>
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-black-1">Status</h3>
+                    </div>
+                    <multiselect
+                            v-model="filters.status.selected"
+                            :options="filters.status.data"
+                            :multiple="true"
+                            :close-on-select="false"
+                            :clear-on-select="false"
+                            placeholder="Pick some status">
+                    </multiselect>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-black-1">Location</h3>
+                    </div>
+                    <multiselect
+                            v-model="filters.locations.selected"
+                            :options="filters.locations.data"
+                            :multiple="true"
+                            :close-on-select="false"
+                            :clear-on-select="false"
+                            placeholder="Pick some status">
+                    </multiselect>
+                </div>
             </section>
         </Card>
     </main>
@@ -96,7 +122,9 @@
               service: new Date('08/21/2018'),
               trip: 774,
               energy: '450 kWh',
-              serviceTime: 14
+              serviceTime: 14,
+              status: 'Service Needed',
+              location: 'USA'
             },
             {
               id: {
@@ -111,7 +139,9 @@
               service: new Date('06/12/2018'),
               trip: 825,
               energy: '321 kWh',
-              serviceTime: 20
+              serviceTime: 20,
+              status: 'Vacacions',
+              location: 'France'
             },
             {
               id: {
@@ -126,7 +156,9 @@
               service: new Date('06/16/2018'),
               trip: 125,
               energy: '230 kWh',
-              serviceTime: 3
+              serviceTime: 3,
+              status: 'Service Needed',
+              location: 'France'
             },
             {
               id: {
@@ -141,7 +173,9 @@
               service: new Date('07/02/2018'),
               trip: 734,
               energy: '129 kWh',
-              serviceTime: 12
+              serviceTime: 12,
+              status: 'Service In Progress',
+              location: 'Canada'
             },
             {
               id: {
@@ -156,7 +190,9 @@
               service: new Date('08/27/2018'),
               trip: 823,
               energy: '553 kWh',
-              serviceTime: 19
+              serviceTime: 19,
+              status: 'Service Canceled',
+              location: 'USA'
             }
           ]
         },
@@ -178,7 +214,27 @@
               'Audi RS 7',
               'Tesla Model S'
             ],
-            selected: null,
+            selected: [],
+            type: 'multiple-select'
+          },
+          status: {
+            data: [
+              'Service Needed',
+              'Service In Progress',
+              'Service canceled',
+              'In Vacacions'
+            ],
+            selected: [],
+            type: 'multiple-select'
+          },
+          locations: {
+            data: [
+              'USA',
+              'Canada',
+              'Mexico',
+              'France'
+            ],
+            selected: [],
             type: 'multiple-select'
           }
         }
@@ -187,14 +243,26 @@
     computed: {
       filteredList() {
         let list = this.vehiclesList;
-        // eslint-disable-next-line no-console
-        console.log(this.filters.models);
         list = list.datas
           .filter((row) => row.trip >= this.filters.trip.data)
           .filter((row) => row.serviceTime >= this.filters.service.data)
           .filter((row) => {
             if(this.filters.models.selected && this.filters.models.selected.length > 0 ) {
               return this.filters.models.selected.includes(row.model)
+            } else {
+              return row;
+            }
+          })
+          .filter((row) => {
+            if(this.filters.status.selected && this.filters.status.selected.length > 0 ) {
+              return this.filters.status.selected.includes(row.status)
+            } else {
+              return row;
+            }
+          })
+          .filter((row) => {
+            if(this.filters.locations.selected && this.filters.locations.selected.length > 0 ) {
+              return this.filters.locations.selected.includes(row.location)
             } else {
               return row;
             }

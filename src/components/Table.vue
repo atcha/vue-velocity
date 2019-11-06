@@ -23,9 +23,9 @@
                 </th>
             </tr>
             </thead>
-            <tbody>
-            <tr class="mb-3 bg-white border border-solid border-gray-3 shadow-2l"
-                v-for="(item, index) in formatedData" :key="index">
+            <tbody v-if="formatedData.length > 0">
+            <tr :key="index" class="mb-3 bg-white border border-solid border-gray-3 shadow-2l"
+                v-for="(item, index) in formatedData">
                 <td class="p-5" v-for="column in columns" :key="column.name">
                     <template v-if="'actions' in column">
                         <Button v-for="(action, index) in column.actions"
@@ -49,6 +49,13 @@
                     </template>
                 </td>
             </tr>
+            </tbody>
+            <tbody v-else>
+                <tr class="mb-3 bg-white border border-solid border-gray-3 shadow-2l">
+                    <td class="p-5 font-bold" :colspan="columns.length">
+                        No vehicles
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
