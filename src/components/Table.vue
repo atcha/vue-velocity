@@ -5,8 +5,8 @@
             <tr>
                 <th v-for="column in columns"
                     :key="column.name">
-                    <div class="flex items-center justify-center">
-                        <span class="uppercase text-gray-1 text-sm">{{ column.label }}</span>
+                    <div class="flex items-center justify-center ">
+                        <span class="uppercase text-gray-1 text-sm" v-if="column.label">{{ column.label }}</span>
                         <Button class="c-btn-sortable text-black-3"
                                 v-if="column.sortable"
                                 round
