@@ -25,7 +25,7 @@
         },
         computed: {
             classes () {
-                return (this.round === true ? 'rounded-full p-0' : 'px-4 py-2') +
+                return (this.round === true ? 'rounded-full p-0' : '') +
                 (this.rounded === true ? ' rounded' : '')
 
             }

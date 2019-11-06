@@ -1,12 +1,12 @@
 <template>
-    <span class="relative p-2" :class="classes">
+    <div class="relative" :class="classes">
         <span v-if="notify" class="absolute top-0 right-8 h-1 w-1 rounded-full bg-primary-normal border border-solid border-primary-normal"></span>
         <svg xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
              class="fill-current">
             <use v-bind="{'xlink:href' : '#c-icon-' + name }"></use>
         </svg>
-    </span>
+    </div>
 </template>
 
 <script>
@@ -19,7 +19,7 @@
         },
         computed: {
             classes () {
-                return (this.round === true ? 'rounded-full p-0' : 'px-4 py-2')
+                return (this.round === true ? 'rounded-full p-0' : '')
             }
         }
     }
