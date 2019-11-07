@@ -28,6 +28,7 @@
 <script>
   import Slider from "../components/Slider";
   import Multiselect from "vue-multiselect";
+  import 'vue-multiselect/dist/vue-multiselect.min.css';
 
   export default {
     name: "MultipleFilter",
@@ -54,7 +55,6 @@
   }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
     .multiselect { @apply text-primary-normal; }
     .multiselect__select::before { @apply text-gray-1; }
