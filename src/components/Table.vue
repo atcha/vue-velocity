@@ -38,8 +38,9 @@
                     </template>
                     <template v-else>
                         <div v-if="typeof item[column.name] === 'object' " class="flex items-center justify-start">
-                            <Avatar v-if="item[column.name].img" type="simple" :size="avatarSize" :img="item[column.name].img" class="mr-3" />
-                            <Avatar v-else type="simple" :size="avatarSize" class="mr-3" />
+                            <Avatar v-if="item[column.name].img" type="simple" :size="avatarSize"
+                                    :img="item[column.name].img" class="mr-3"/>
+                            <Avatar v-else type="simple" :size="avatarSize" class="mr-3"/>
                             <div>
                                 <p class="text-left leading-tight">{{ item[column.name].name }}</p>
                                 <p class="text-left leading-tight text-gray-1">#{{ item[column.name].id }}</p>
@@ -51,101 +52,142 @@
             </tr>
             </tbody>
             <tbody v-else>
-                <tr class="mb-3 bg-white border border-solid border-gray-3 shadow-2l">
-                    <td class="p-5 font-bold" :colspan="columns.length">
-                        No vehicles
-                    </td>
-                </tr>
+            <tr class="mb-3 bg-white border border-solid border-gray-3 shadow-2l">
+                <td class="p-5 font-bold" :colspan="columns.length">
+                    No vehicles
+                </td>
+            </tr>
             </tbody>
         </table>
+        <div class="c-expand-section">
+            <Button class="uppercase text-black-4 mx-2" v-if="vehiclesShown < data.length"
+                    @click.native="modifyTableNumber('more')">
+                Expand table
+            </Button>
+            <Button class="uppercase text-black-4 mx-2" v-else-if="vehiclesShown > nbVehiclesToShow"
+                    @click.native="modifyTableNumber('less')">
+                Contract table
+            </Button>
+        </div>
     </div>
 </template>
 
 <script>
-    import Avatar from "./Avatar";
-    import Button from "./Button";
+  import Avatar from "./Avatar";
+  import Button from "./Button";
 
-    export default {
-        name: "Table",
-        components: {
-          Avatar,
-          Button
-        },
-        props: {
-            columns: {
-                name: String,
-                required: Boolean,
-                label: String,
-                sortable: Boolean,
-                actions: Object
-            },
-            data: Array,
-            filterKey: String
-        },
-        data () {
-            let sortOrders = {};
-            this.columns.forEach((column) => {
-                sortOrders[column.name] = 1
-            });
-            return {
-               sortKey: '',
-               sortOrders: sortOrders,
-               avatarSize: 8
-            }
-        },
-        computed: {
-            formatedData() {
-                let sortKey = this.sortKey;
-                let filterKey = this.filterKey && this.filterKey.toLowerCase();
-                let order = this.sortOrders[sortKey] || 1;
-                let data = this.data;
+  export default {
+    name: "Table",
+    components: {
+      Avatar,
+      Button
+    },
+    props: {
+      columns: {
+        name: String,
+        required: Boolean,
+        label: String,
+        sortable: Boolean,
+        actions: Object
+      },
+      data: Array,
+      filterKey: String
+    },
+    data() {
+      let sortOrders = {};
+      this.columns.forEach((column) => {
+        sortOrders[column.name] = 1
+      });
+      return {
+        sortKey: '',
+        sortOrders: sortOrders,
+        avatarSize: 8,
+        nbVehiclesToShow: 8,
+        vehiclesShown: 8
+      }
+    },
+    computed: {
+      formatedData() {
+        let sortKey = this.sortKey;
+        let filterKey = this.filterKey && this.filterKey.toLowerCase();
+        let order = this.sortOrders[sortKey] || 1;
+        let data = this.data;
 
-                if (filterKey) {
-                    data = data.filter((row) => {
-                        return Object.keys(row).some((key) => {
-                            return String(row[key])
-                                    .toLowerCase()
-                                    .indexOf(filterKey) > -1;
-                        })
-                    })
-                }
-
-                if (sortKey) {
-                    data = data.slice().sort((a, b) => {
-                        a = a[sortKey];
-                        b = b[sortKey];
-                        return (a === b ? 0 : a > b ? 1 : -1) * order;
-                    });
-                }
-
-                return data.map(columns => {
-                    for (const key of Object.keys(columns)) {
-                        if (columns[key] instanceof Date) {
-                            columns[key] = columns[key].toLocaleDateString();
-                        }
-                    }
-                    return columns;
-                });
-            }
-        },
-        methods: {
-            sortBy (key) {
-                this.sortKey = key;
-                this.sortOrders[key] = this.sortOrders[key] * -1;
-            }
+        if (filterKey) {
+          data = data.filter((row) => {
+            return Object.keys(row).some((key) => {
+              return String(row[key])
+                .toLowerCase()
+                .indexOf(filterKey) > -1;
+            })
+          })
         }
+
+        if (sortKey) {
+          data = data.slice().sort((a, b) => {
+            a = a[sortKey];
+            b = b[sortKey];
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          });
+        }
+
+        data = data.map(columns => {
+          for (const key of Object.keys(columns)) {
+            if (columns[key] instanceof Date) {
+              columns[key] = columns[key].toLocaleDateString();
+            }
+          }
+          return columns;
+        });
+
+        return data.slice(0, this.vehiclesShown);
+      }
+    },
+    methods: {
+      sortBy(key) {
+        this.sortKey = key;
+        this.sortOrders[key] = this.sortOrders[key] * -1;
+      },
+      modifyTableNumber(method) {
+        switch (method) {
+          case 'more':
+            this.vehiclesShown = this.data.length;
+            break;
+          case 'less':
+            this.vehiclesShown = this.nbVehiclesToShow;
+            break;
+        }
+      }
     }
+  }
 </script>
 
 <style scoped>
     .c-table table {
         border-spacing: 0 1rem;
     }
-    .c-btn-sortable svg { transition: transform .15s ease-in; }
+
+    .c-btn-sortable svg {
+        transition: transform .15s ease-in;
+    }
+
     .c-btn-sortable .is-asc {
         transform: rotateZ(0deg);
     }
+
     .c-btn-sortable .is-dsc {
         transform: rotateZ(180deg);
+    }
+
+    .c-expand-section {
+        @apply flex justify-center items-center;
+    }
+    .c-expand-section::before, .c-expand-section::after {
+        @apply block bg-black-4;
+        height: 1px;
+        content: "";
+        -webkit-box-flex: 1;
+        flex: auto;
+        background-clip: content-box;
     }
 </style>

@@ -381,6 +381,23 @@
               serviceTime: 17,
               status: 'Service Needed',
               location: 'France'
+            },
+            {
+              id: {
+                id: 12026,
+                name: 'Resolve',
+                img: {
+                  src: require('../assets/img/vehicles/resolve.png'),
+                  alt: 'Resolve'
+                }
+              },
+              model: 'Volvo Intellisafe',
+              service: new Date('05/29/2018'),
+              trip: 624,
+              energy: '640 kWh',
+              serviceTime: 17,
+              status: 'Service Needed',
+              location: 'France'
             }
           ]
         },
