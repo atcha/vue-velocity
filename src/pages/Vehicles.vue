@@ -4,9 +4,9 @@
             <div class="mb-4 flex justify-between items-start">
                 <div class="flex items-end">
                     <h1 class="text-2xl leading-none text-black-1 mr-2">Vehicules Dashboard</h1>
-                    <span class="text-sm leading-none text-block-3">1192 Total</span>
+                    <span class="text-sm leading-none text-block-3">{{ vehiclesList.datas.length }} Total</span>
                 </div>
-                <Button class="w-56 bg-primary-normal text-white hover:bg-primary-light px-4 py-2" rounded>
+                <Button class="w-56 px-4 py-2 bg-primary-normal text-white hover:bg-primary-light" rounded>
                     Filter List
                 </Button>
             </div>
@@ -17,7 +17,7 @@
             </Table>
         </div>
         <Card class="w-1/4 flex flex-col items-start">
-            <header class="w-full flex justify-between items-center pb-10">
+            <header class="w-full flex justify-between items-center mb-2">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 <Button rounded class="p-0 text-gray-1 hover:text-black-3">
                     <Icon name="keyboard_control"
@@ -25,59 +25,13 @@
                 </Button>
             </header>
             <section class="w-full">
-                <div class="mb-8">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-black-1">Trips taken</h3>
-                        <p class="text-gray-1">{{ filters.trip.data }}</p>
-                    </div>
-                    <Slider min-value="1" max-value="1200" v-model="filters.trip.data"></Slider>
-                </div>
-                <div class="mb-8">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-black-1">Service due</h3>
-                        <p class="text-gray-1">{{ filters.service.data }}</p>
-                    </div>
-                    <Slider min-value="1" max-value="25" v-model="filters.service.data"></Slider>
-                </div>
-                <div class="mb-8">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-black-1">Vehicle model</h3>
-                    </div>
-                    <multiselect
-                            v-model="filters.models.selected"
-                            :options="filters.models.data"
-                            :multiple="true"
-                            :close-on-select="false"
-                            :clear-on-select="false"
-                            placeholder="Pick some models">
-                    </multiselect>
-                </div>
-                <div class="mb-8">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-black-1">Status</h3>
-                    </div>
-                    <multiselect
-                            v-model="filters.status.selected"
-                            :options="filters.status.data"
-                            :multiple="true"
-                            :close-on-select="false"
-                            :clear-on-select="false"
-                            placeholder="Pick some status">
-                    </multiselect>
-                </div>
-                <div>
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-black-1">Location</h3>
-                    </div>
-                    <multiselect
-                            v-model="filters.locations.selected"
-                            :options="filters.locations.data"
-                            :multiple="true"
-                            :close-on-select="false"
-                            :clear-on-select="false"
-                            placeholder="Pick some status">
-                    </multiselect>
-                </div>
+                <MultipleFilter v-for="(filter, index) in filters" :key="index"
+                        :type="filter.type"
+                        :title="filter.title"
+                        :data="filter.data"
+                        :min-value="filter.minValue"
+                        :max-value="filter.maxValue"
+                        v-model="filter.selected" />
             </section>
         </Card>
     </main>
@@ -86,19 +40,17 @@
 <script>
   import Button from "../components/Button";
   import Card from "../components/Card";
+  import MultipleFilter from "../components/MultipleFilter";
   import Icon from "../components/Icon";
-  import Slider from "../components/Slider";
   import Table from "../components/Table";
-  import Multiselect from "vue-multiselect";
 
   export default {
     name: "Vehicles",
     components: {
       Button,
       Card,
+      MultipleFilter,
       Icon,
-      Multiselect,
-      Slider,
       Table
     },
     data() {
@@ -401,16 +353,28 @@
             }
           ]
         },
-        filters: {
-          trip: {
+        filters: [
+          {
+            name: 'trip',
+            title: 'Trips taken',
             data: 1,
+            selected: 1,
+            minValue: 1,
+            maxValue: 1200,
             type: 'slider'
           },
-          service: {
+          {
+            name: 'service',
+            title: 'Service due',
             data: 1,
+            selected: 1,
+            minValue: 1,
+            maxValue: 30,
             type: 'slider'
           },
-          models: {
+          {
+            name: 'models',
+            title: 'Vehicle model',
             data: [
               'Tesla Model X',
               'Volvo Intellisafe',
@@ -422,7 +386,9 @@
             selected: [],
             type: 'multiple-select'
           },
-          status: {
+          {
+            name: 'status',
+            title: 'status',
             data: [
               'Service Needed',
               'Service In Progress',
@@ -432,7 +398,9 @@
             selected: [],
             type: 'multiple-select'
           },
-          locations: {
+          {
+            name: 'locations',
+            title: 'Location',
             data: [
               'USA',
               'Canada',
@@ -442,37 +410,40 @@
             selected: [],
             type: 'multiple-select'
           }
-        }
+        ]
       }
     },
     computed: {
       filteredList() {
         let list = this.vehiclesList;
-        list = list.datas
-          .filter((row) => row.trip >= this.filters.trip.data)
-          .filter((row) => row.serviceTime >= this.filters.service.data)
+        return list.datas
           .filter((row) => {
-            if(this.filters.models.selected && this.filters.models.selected.length > 0 ) {
-              return this.filters.models.selected.includes(row.model)
-            } else {
-              return row;
-            }
-          })
-          .filter((row) => {
-            if(this.filters.status.selected && this.filters.status.selected.length > 0 ) {
-              return this.filters.status.selected.includes(row.status)
-            } else {
-              return row;
-            }
-          })
-          .filter((row) => {
-            if(this.filters.locations.selected && this.filters.locations.selected.length > 0 ) {
-              return this.filters.locations.selected.includes(row.location)
-            } else {
-              return row;
-            }
-          })
-        return list;
+            let response = true;
+            this.filters.forEach((filter) => {
+              if(filter.name === 'trip') {
+                return response = row.trip >= Number(filter.selected);
+              }
+            });
+            return response;
+          }).filter((row) => {
+            let response = true;
+            this.filters.forEach((filter) => {
+              if (filter.name === 'service') {
+                response = row.serviceTime >= Number(filter.selected);
+              }
+            })
+            return response;
+          }).filter((row) => {
+            let response = true;
+            this.filters.forEach((filter) => {
+              if(filter.name === 'models' || filter.name === 'status' || filter.name === 'locations') {
+                if (filter.selected && filter.selected.length > 0) {
+                  response = filter.selected.includes(row.model);
+                }
+              }
+            });
+            return response;
+          });
       }
     },
     methods: {
@@ -483,18 +454,3 @@
     }
   }
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-<style>
-    .multiselect { @apply text-primary-normal; }
-    .multiselect__select::before { @apply text-gray-1; }
-    .multiselect__tags { @apply border-gray-1; }
-    .multiselect__tag,
-    .multiselect__option--selected.multiselect__option--highlight,
-    .multiselect__option--selected.multiselect__option--highlight::after { @apply bg-primary-normal; }
-    .multiselect__tag-icon::after { @apply text-white; }
-    .multiselect__tag-icon:focus, .multiselect__tag-icon:hover { @apply bg-black-1 text-white; }
-    .multiselect__content-wrapper { @apply border-gray-1; }
-    .multiselect__option--highlight { @apply bg-primary-normal text-white; }
-    .multiselect__option--highlight::after { @apply bg-primary-normal text-white; }
-</style>
