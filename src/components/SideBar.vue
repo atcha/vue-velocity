@@ -77,13 +77,13 @@
 <style scoped>
     article {
         top: 80px;
-        right: -16rem;
+        right: -18rem;
         opacity: 0;
         transition: transform .25s cubic-bezier(0.4,0.0,0.2,1),
                     opacity .30s linear;
     }
     article.is-open {
-        transform: translateX(-16rem);
+        transform: translateX(-18rem);
         opacity: 1;
     }
 </style>
