@@ -23,43 +23,43 @@
                 </th>
             </tr>
             </thead>
-            <tbody v-if="formatedData.length > 0">
-            <tr :key="index" class="mb-3 bg-white border border-solid border-gray-3 shadow-2l"
-                v-for="(item, index) in formatedData">
-                <td class="p-5" v-for="column in columns" :key="column.name">
-                    <template v-if="'actions' in column">
-                        <Button v-for="(action, index) in column.actions"
-                                :key="index"
-                                class="text-primary-normal hover:text-black-1 hover:bg-primary-light"
-                                @click.native="action.function"
-                                rounded>
-                            {{ action.label }}
-                        </Button>
-                    </template>
-                    <template v-else>
-                        <div v-if="typeof item[column.name] === 'object' " class="flex items-center justify-start">
-                            <Avatar v-if="item[column.name].img" type="simple" :size="avatarSize"
-                                    :img="item[column.name].img" class="mr-3"/>
-                            <Avatar v-else type="simple" :size="avatarSize" class="mr-3"/>
-                            <div>
-                                <p class="text-left leading-tight">{{ item[column.name].name }}</p>
-                                <p class="text-left leading-tight text-gray-1">#{{ item[column.name].id }}</p>
-                            </div>
-                        </div>
-                        <span v-else v-html="item[column.name]"></span>
-                    </template>
-                </td>
-            </tr>
-            </tbody>
-            <tbody v-else>
+            <tbody v-if="formatedData.length === 0">
             <tr class="mb-3 bg-white border border-solid border-gray-3 shadow-2l">
                 <td class="p-5 font-bold" :colspan="columns.length">
                     No vehicles
                 </td>
             </tr>
             </tbody>
+            <transition-group v-else tag="tbody" name="table-row">
+                <tr :key="item.id" class="mb-3 bg-white border border-solid border-gray-3 shadow-2l"
+                    v-for="item in formatedData">
+                    <td class="p-5" v-for="column in columns" :key="column.name">
+                        <template v-if="'actions' in column">
+                            <Button v-for="(action, index) in column.actions"
+                                    :key="index"
+                                    class="text-primary-normal hover:text-black-1 hover:bg-primary-light"
+                                    @click.native="action.function"
+                                    rounded>
+                                {{ action.label }}
+                            </Button>
+                        </template>
+                        <template v-else>
+                            <div v-if="typeof item[column.name] === 'object' " class="flex items-center justify-start">
+                                <Avatar v-if="item[column.name].img" type="simple" :size="avatarSize"
+                                        :img="item[column.name].img" class="mr-3"/>
+                                <Avatar v-else type="simple" :size="avatarSize" class="mr-3"/>
+                                <div>
+                                    <p class="text-left leading-tight">{{ item[column.name].name }}</p>
+                                    <p class="text-left leading-tight text-gray-1">#{{ item[column.name].id }}</p>
+                                </div>
+                            </div>
+                            <span v-else v-html="item[column.name]"></span>
+                        </template>
+                    </td>
+                </tr>
+            </transition-group>
         </table>
-        <div class="c-expand-section">
+        <div v-if="data.length > vehiclesShown" class="c-expand-section">
             <Button class="uppercase text-black-4 mx-2" v-if="vehiclesShown < data.length"
                     @click.native="modifyTableNumber('more')">
                 Expand table
@@ -163,25 +163,13 @@
 </script>
 
 <style scoped>
-    .c-table table {
-        border-spacing: 0 1rem;
-    }
+    .c-table table { border-spacing: 0 1rem;  }
 
-    .c-btn-sortable svg {
-        transition: transform .15s ease-in;
-    }
+    .c-btn-sortable svg { transition: transform .15s ease-in; }
+    .c-btn-sortable .is-asc { transform: rotateZ(0deg); }
+    .c-btn-sortable .is-dsc { transform: rotateZ(180deg); }
 
-    .c-btn-sortable .is-asc {
-        transform: rotateZ(0deg);
-    }
-
-    .c-btn-sortable .is-dsc {
-        transform: rotateZ(180deg);
-    }
-
-    .c-expand-section {
-        @apply flex justify-center items-center;
-    }
+    .c-expand-section { @apply flex justify-center items-center; }
     .c-expand-section::before, .c-expand-section::after {
         @apply block bg-black-4;
         height: 1px;
@@ -190,4 +178,5 @@
         flex: auto;
         background-clip: content-box;
     }
+    .table-row-move { transition: transform 1s; }
 </style>
