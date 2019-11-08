@@ -31,7 +31,7 @@
             </tr>
             </tbody>
             <transition-group v-else tag="tbody" name="table-row">
-                <tr :key="item.id" class="mb-3 bg-white border border-solid border-gray-3 shadow-2l"
+                <tr :key="item.id.id" class="mb-3 bg-white border border-solid border-gray-3 shadow-2l"
                     v-for="item in formatedData">
                     <td class="p-5" v-for="column in columns" :key="column.name">
                         <template v-if="'actions' in column">

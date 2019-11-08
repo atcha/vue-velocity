@@ -98,7 +98,7 @@
               trip: 825,
               energy: '321 kWh',
               serviceTime: 20,
-              status: 'Vacacions',
+              status: 'In Vacacions',
               location: 'France'
             },
             {
@@ -229,7 +229,7 @@
               trip: 825,
               energy: '321 kWh',
               serviceTime: 20,
-              status: 'Vacacions',
+              status: 'In Vacacions',
               location: 'France'
             },
             {
@@ -431,14 +431,22 @@
               if (filter.name === 'service') {
                 response = row.serviceTime >= Number(filter.selected);
               }
-            })
+            });
             return response;
           }).filter((row) => {
             let response = true;
             this.filters.forEach((filter) => {
-              if(filter.name === 'models' || filter.name === 'status' || filter.name === 'locations') {
-                if (filter.selected && filter.selected.length > 0) {
-                  response = filter.selected.includes(row.model);
+              if (filter.selected && filter.selected.length > 0) {
+                switch (filter.name) {
+                  case 'models':
+                    response = filter.selected.includes(row.model);
+                    break;
+                  case 'status':
+                    response = filter.selected.includes(row.status);
+                    break;
+                  case 'locations':
+                    response = filter.selected.includes(row.location);
+                    break;
                 }
               }
             });
