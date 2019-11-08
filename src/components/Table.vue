@@ -59,7 +59,7 @@
                 </tr>
             </transition-group>
         </table>
-        <div v-if="data.length > vehiclesShown" class="c-expand-section">
+        <div v-if="formatedData.length >= nbVehiclesToShow" class="c-expand-section">
             <Button class="uppercase text-black-4 mx-2" v-if="vehiclesShown < data.length"
                     @click.native="modifyTableNumber('more')">
                 Expand table
