@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="h-full">
     <Nav :menu-list-item="menuListItems" :user="user"></Nav>
     <header class="bg-white flex justify-between px-20 border-b border-gray-3 border-solid">
       <a class="inline-flex items-center" to="/">

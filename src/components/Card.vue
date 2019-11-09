@@ -15,14 +15,15 @@
 </template>
 
 <script>
-    export default {
-        name: "Card",
-        props: {
-            img: Object,
-            title: String,
-            content: String
-        }
+  export default {
+    name: "Card",
+    props: {
+      img: Object,
+      title: String,
+      content: String,
+
     }
+  }
 </script>
 
 <style scoped>
