@@ -1,10 +1,32 @@
 <template>
     <main class="flex flex-wrap p-20 min-h-screen">
-        <Card class="mr-6" :img="operatingCard.img"
-              :title="operatingCard.title"
-              :content="operatingCard.content">
-        </Card>
-        <Card>
+        <div class="w-1/2">
+            <Card class="mr-6" :img="operatingCard.img"
+                  :title="operatingCard.title"
+                  :content="operatingCard.content">
+            </Card>
+            <div class="flex mt-6">
+                <Card class="mr-6 w-1/2">
+                    <header class="w-full flex justify-between items-center mb-2">
+                        <h2 class="uppercase text-black-3">Vehicles on track</h2>
+                    </header>
+                    <section>
+                        <h3 class="text-4xl text-left">1,428<span class="text-2xl">cars</span></h3>
+                        <p class="flex items-center text-red text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-down-right" />-7.6%</p>
+                    </section>
+                </Card>
+                <Card class="mr-6  w-1/2">
+                    <header class="w-full flex justify-between items-center mb-2">
+                        <h2 class="uppercase text-black-3">Distance Driven</h2>
+                    </header>
+                    <section>
+                        <h3 class="text-4xl text-left">158.3<span class="text-2xl">mi</span></h3>
+                        <p class="flex items-center text-green text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-up-right" />+14.2%</p>
+                    </section>
+                </Card>
+            </div>
+        </div>
+        <Card class="w-1/2">
             <header class="w-full flex justify-between items-center mb-2">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
@@ -12,17 +34,60 @@
                 <line-chart :chartdata="datacollection" :options="options"/>
             </section>
         </Card>
+        <Card class="w-full mt-6">
+            <header class="w-full flex justify-between items-center mb-2">
+                <h2 class="uppercase text-black-3">Fleet activity map</h2>
+            </header>
+            <section>
+                <img class="w-full h-auto" src="../assets/img/home/Map.png" alt="">
+            </section>
+        </Card>
+        <div class="flex w-full mt-6">
+            <Card class="w-1/3 mr-6">
+                <header class="w-full flex justify-between items-center mb-4">
+                    <h2 class="uppercase text-black-3">Fleet activity map</h2>
+                </header>
+                <ul v-if="carList">
+                    <li class="flex justify-between" v-for="car in carList" :key="car.id">
+
+                        <Avatar :img="car.img" type="simple" notify/>
+                        <div>
+                            <p>{{ car.name }}</p>
+                            <p>{{ car.model }}</p>
+                        </div>
+                        <div>
+                            <p>${{car.price}}</p>
+                            <p>${{car.distance}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </Card>
+            <Card class="w-1/3 mr-6">
+                <header class="w-full flex justify-between items-center mb-2">
+                    <h2 class="uppercase text-black-3">Fleet activity map</h2>
+                </header>
+            </Card>
+            <Card class="w-1/3">
+                <header class="w-full flex justify-between items-center mb-2">
+                    <h2 class="uppercase text-black-3">Fleet activity map</h2>
+                </header>
+            </Card>
+        </div>
     </main>
 </template>
 
 <script>
+  import Avatar from "../components/Avatar";
   import Card from "../components/Card";
   import LineChart from "../components/LineChart";
+  import Icon from "../components/Icon";
 
   export default {
     name: 'home',
     components: {
+      Avatar,
       Card,
+      Icon,
       LineChart
     },
     data() {
@@ -139,22 +204,22 @@
           scales: {
             yAxes: [{
               gridLines: {
-                color: "#8097B1",
+                color: "#B0BAC9",
                 borderDash: [3, 3]
               },
               ticks: {
                 suggestedMin: 0,
                 suggestedMax: 125,
-                fontColor: "#8097B1"
+                fontColor: "#B0BAC9"
               }
             }],
             xAxes: [{
               gridLines: {
-                color: "#8097B1",
+                color: "#B0BAC9",
                 borderDash: [3, 3]
               },
               ticks: {
-                fontColor: "#8097B1"
+                fontColor: "#B0BAC9"
               }
             }]
           },
@@ -165,7 +230,7 @@
               boxWidth: 10,
               usePointStyle: true,
               padding: 20,
-              fontColor: "#8798AD"
+              fontColor: "#B0BAC9"
             }
           },
           elements: {
@@ -177,7 +242,19 @@
               backgroundColor: "#FFF"
             }
           }
-        }
+        },
+        carList: [
+          {
+            id: 0,
+            name: 'Bebop',
+            model: 'Volvo Intellisafe',
+            price: '6,432',
+            distance: '1,232',
+            img: {
+              src: require('../assets/img/vehicles/bebop.png')
+            }
+          }
+        ]
       }
     },
     methods: {
