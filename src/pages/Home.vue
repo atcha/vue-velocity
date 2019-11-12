@@ -44,20 +44,19 @@
         </Card>
         <div class="flex w-full mt-6">
             <Card class="w-1/3 mr-6">
-                <header class="w-full flex justify-between items-center mb-4">
+                <header class="w-full flex justify-between items-center mb-8">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
                 <ul v-if="carList">
-                    <li class="flex justify-between" v-for="car in carList" :key="car.id">
-
-                        <Avatar :img="car.img" type="simple" notify/>
-                        <div>
-                            <p>{{ car.name }}</p>
-                            <p>{{ car.model }}</p>
+                    <li class="flex justify-between mt-4" v-for="car in carList" :key="car.id">
+                        <Avatar class="flex-initial mr-4" :img="car.img" type="simple" :notify="{ text: car.id + 1 }"/>
+                        <div class="flex-1">
+                            <p class="text-left">{{ car.name }}</p>
+                            <p class="text-left text-black-3">{{ car.model }}</p>
                         </div>
-                        <div>
-                            <p>${{car.price}}</p>
-                            <p>${{car.distance}}</p>
+                        <div class="flex-1">
+                            <p class="text-right">${{car.price}}</p>
+                            <p class="text-right text-black-3">{{car.distance}} miles</p>
                         </div>
                     </li>
                 </ul>
@@ -253,7 +252,77 @@
             img: {
               src: require('../assets/img/vehicles/bebop.png')
             }
-          }
+          },
+            {
+                id: 1,
+                name: 'Bebop',
+                model: 'Volvo Intellisafe',
+                price: '6,432',
+                distance: '1,232',
+                img: {
+                    src: require('../assets/img/vehicles/bebop.png')
+                }
+            },
+            {
+                id: 2,
+                name: 'Bebop',
+                model: 'Volvo Intellisafe',
+                price: '6,432',
+                distance: '1,232',
+                img: {
+                    src: require('../assets/img/vehicles/bebop.png')
+                }
+            },
+            {
+                id: 3,
+                name: 'Bebop',
+                model: 'Volvo Intellisafe',
+                price: '6,432',
+                distance: '1,232',
+                img: {
+                    src: require('../assets/img/vehicles/bebop.png')
+                }
+            },
+            {
+                id: 4,
+                name: 'Bebop',
+                model: 'Volvo Intellisafe',
+                price: '6,432',
+                distance: '1,232',
+                img: {
+                    src: require('../assets/img/vehicles/bebop.png')
+                }
+            },
+            {
+                id: 5,
+                name: 'Bebop',
+                model: 'Volvo Intellisafe',
+                price: '6,432',
+                distance: '1,232',
+                img: {
+                    src: require('../assets/img/vehicles/bebop.png')
+                }
+            },
+            {
+                id: 6,
+                name: 'Bebop',
+                model: 'Volvo Intellisafe',
+                price: '6,432',
+                distance: '1,232',
+                img: {
+                    src: require('../assets/img/vehicles/bebop.png')
+                }
+            },
+            {
+                id: 7,
+                name: 'Bebop',
+                model: 'Volvo Intellisafe',
+                price: '6,432',
+                distance: '1,232',
+                img: {
+                    src: require('../assets/img/vehicles/bebop.png')
+                }
+            }
         ]
       }
     },

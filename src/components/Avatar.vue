@@ -1,13 +1,15 @@
 <template>
     <div class="c-avatar" :class="avatarClass">
         <template v-if="type === 'simple'">
-            <div class="c-avatar__picture">
+            <div class="c-avatar__picture relative">
+                <span v-if="notify" class="absolute top-0 right-0 h-4 w-4 rounded-full bg-white text-xs text-black-3 shadow">{{ notify.text }}</span>
                 <img v-if="img" :src="img.src" :alt="img.alt" class="rounded-full" :class="imgClass" />
                 <span v-else class="block bg-primary-light rounded-full" :class="avatarClass"></span>
             </div>
         </template>
         <template v-else-if="type === 'nav'">
-            <div class="c-avatar__picture w-8 mr-3">
+            <div class="c-avatar__picture w-8 mr-3 relative">
+                <span v-if="notify" class="absolute top-0 right-8 h-1 w-1 rounded-full bg-white">{{ notify.text }}</span>
                 <img class="rounded" :src="img.src" :alt="img.alt" :class="imgClass" />
             </div>
             <div class="c-avatar__content flex flex-col items-start">
@@ -16,7 +18,8 @@
             </div>
         </template>
         <template v-else-if="type === 'vertical'">
-            <div class="c-avatar__picture">
+            <div class="c-avatar__picture relative">
+                <span v-if="notify" class="absolute top-0 right-8 h-1 w-1 rounded-full bg-white">{{ notify.text }}</span>
                 <img :src="img.src" :alt="img.alt" :class="imgClass" />
             </div>
             <div class="c-avatar__content">
@@ -25,7 +28,8 @@
             </div>
         </template>
         <template v-else-if="type === 'horizontal'">
-            <div class="c-avatar__picture">
+            <div class="c-avatar__picture relative">
+                <span v-if="notify" class="absolute top-0 right-8 h-1 w-1 rounded-full bg-white">{{ notify.text }}</span>
                 <img :src="img.src" :alt="img.alt" :class="imgClass" />
             </div>
             <div class="c-avatar__content">
@@ -45,7 +49,8 @@
             imgClass: { type: String },
             name: { type: String },
             professionnalFunction: { type: String },
-            size: { type: Number }
+            size: { type: Number },
+            notify: { type: Object }
         },
         data () {
             return {
