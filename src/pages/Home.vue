@@ -46,6 +46,7 @@
                         :center="center"
                 >
                     <l-tile-layer :url="url"></l-tile-layer>
+                    <l-circle-marker :lat-lng="[40.730451, -73.959626]" :radius=55></l-circle-marker>
                 </l-map>
             </section>
         </Card>
@@ -88,7 +89,7 @@
   import LineChart from "../components/LineChart";
   import Icon from "../components/Icon";
 
-  import { LMap, LTileLayer  } from 'vue2-leaflet';
+  import { LMap, LTileLayer, LCircleMarker  } from 'vue2-leaflet';
 
   export default {
     name: 'home',
@@ -98,7 +99,8 @@
       Icon,
       LineChart,
       LMap,
-      LTileLayer
+      LTileLayer,
+      LCircleMarker
     },
     data() {
       return {
