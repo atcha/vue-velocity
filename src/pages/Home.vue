@@ -39,7 +39,12 @@
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
             <section>
-                <img class="w-full h-auto" src="../assets/img/home/Map.png" alt="">
+                <l-map
+                        ref="map"
+                        style="height: 300px; width: 100%"
+                        :zoom="zoom"
+                        :center="center"
+                ></l-map>
             </section>
         </Card>
         <div class="flex w-full mt-6">
@@ -81,13 +86,16 @@
   import LineChart from "../components/LineChart";
   import Icon from "../components/Icon";
 
+  import { LMap } from 'vue2-leaflet';
+
   export default {
     name: 'home',
     components: {
       Avatar,
       Card,
       Icon,
-      LineChart
+      LineChart,
+      LMap
     },
     data() {
       return {
@@ -323,14 +331,17 @@
                     src: require('../assets/img/vehicles/bebop.png')
                 }
             }
-        ]
+        ],
+        zoom: 15,
+        center: [46.58330879784864, 0.3424481012536944],
       }
     },
-    methods: {
+    created() {
     }
   }
 </script>
 
 <style scoped>
+    @import '~leaflet/dist/leaflet.css';
 
 </style>
