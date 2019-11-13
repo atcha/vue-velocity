@@ -41,10 +41,12 @@
             <section>
                 <l-map
                         ref="map"
-                        style="height: 300px; width: 100%"
+                        style="height: 500px; width: 100%"
                         :zoom="zoom"
                         :center="center"
-                ></l-map>
+                >
+                    <l-tile-layer :url="url"></l-tile-layer>
+                </l-map>
             </section>
         </Card>
         <div class="flex w-full mt-6">
@@ -86,7 +88,7 @@
   import LineChart from "../components/LineChart";
   import Icon from "../components/Icon";
 
-  import { LMap } from 'vue2-leaflet';
+  import { LMap, LTileLayer  } from 'vue2-leaflet';
 
   export default {
     name: 'home',
@@ -95,7 +97,8 @@
       Card,
       Icon,
       LineChart,
-      LMap
+      LMap,
+      LTileLayer
     },
     data() {
       return {
@@ -332,8 +335,9 @@
                 }
             }
         ],
-        zoom: 15,
-        center: [46.58330879784864, 0.3424481012536944],
+        zoom: 14,
+        center: [40.721811, -73.991590],
+        url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
       }
     },
     created() {
