@@ -38,7 +38,7 @@
             <header class="w-full flex justify-between items-center m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
-            <section>
+            <section class="overflow-hidden">
                 <l-map
                         ref="map"
                         style="height: 500px; width: 100%"
