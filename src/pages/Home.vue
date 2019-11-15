@@ -47,11 +47,17 @@
                 >
                     <l-tile-layer :url="url"></l-tile-layer>
                     <l-circle-marker :lat-lng="[40.730451, -73.959626]" :radius="largeRadius"></l-circle-marker>
+                    <l-circle :lat-lng="[40.730451, -73.959626]" :radius="40" :fill="true" :fill-opacity="1"></l-circle>
                     <l-circle-marker :lat-lng="[40.725169, -73.987105]" :radius="smallRadius"></l-circle-marker>
+                    <l-circle :lat-lng="[40.725169, -73.987105]" :radius="40" :fill="true" :fill-opacity="1"></l-circle>
                     <l-circle-marker :lat-lng="[40.731543, -73.907368]" :radius="smallRadius"></l-circle-marker>
+                    <l-circle :lat-lng="[40.731543, -73.907368]" :radius="40" :fill="true" :fill-opacity="1"></l-circle>
                     <l-circle-marker :lat-lng="[40.715542, -74.011095]" :radius="largeRadius"></l-circle-marker>
+                    <l-circle :lat-lng="[40.715542, -74.011095]" :radius="40" :fill="true" :fill-opacity="1"></l-circle>
                     <l-circle-marker :lat-lng="[40.738795, -73.990796]" :radius="largeRadius"></l-circle-marker>
+                    <l-circle :lat-lng="[40.738795, -73.990796]" :radius="40" :fill="true" :fill-opacity="1"></l-circle>
                     <l-circle-marker :lat-lng="[40.737072, -73.929598]" :radius="largeRadius"></l-circle-marker>
+                    <l-circle :lat-lng="[40.737072, -73.929598]" :radius="40" :fill="true" :fill-opacity="1"></l-circle>
                 </l-map>
             </section>
         </Card>
@@ -96,7 +102,7 @@
   import LineChart from "../components/LineChart";
   import Icon from "../components/Icon";
 
-  import { LMap, LTileLayer, LCircleMarker  } from 'vue2-leaflet';
+  import { LMap, LTileLayer, LCircleMarker, LCircle  } from 'vue2-leaflet';
 
   export default {
     name: 'home',
@@ -107,7 +113,8 @@
       LineChart,
       LMap,
       LTileLayer,
-      LCircleMarker
+      LCircleMarker,
+      LCircle
     },
     data() {
       return {
