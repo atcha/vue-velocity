@@ -11,6 +11,7 @@
     "chart.js": "^2.9.2",
     "core-js": "^3.1.2",
     "leaflet": "^1.5.1",
+    "postcss-import": "^12.0.1",
     "vue": "^2.6.10",
     "vue-chartjs": "^3.5.0",
     "vue-multiselect": "^2.1.6",
