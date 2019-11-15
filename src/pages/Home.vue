@@ -41,7 +41,6 @@
             <section class="overflow-hidden" style="height: 500px;">
                 <l-map
                         ref="map"
-                        style="height: 100%; width: 100%"
                         :zoom="zoom"
                         @update:zoom="zoomUpdated"
                         :center="center"
