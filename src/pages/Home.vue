@@ -348,6 +348,4 @@
 </script>
 
 <style scoped>
-    @import '~leaflet/dist/leaflet.css';
-
 </style>
