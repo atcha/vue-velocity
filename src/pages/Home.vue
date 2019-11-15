@@ -7,19 +7,19 @@
             </Card>
             <div class="flex mt-6">
                 <Card class="mr-6 w-1/2">
-                    <header class="w-full flex justify-between items-center mb-2">
+                    <header class="w-full flex justify-between items-center m-10">
                         <h2 class="uppercase text-black-3">Vehicles on track</h2>
                     </header>
-                    <section>
+                    <section class="mb-10 mx-10">
                         <h3 class="text-4xl text-left">1,428<span class="text-2xl">cars</span></h3>
                         <p class="flex items-center text-red text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-down-right" />-7.6%</p>
                     </section>
                 </Card>
                 <Card class="mr-6  w-1/2">
-                    <header class="w-full flex justify-between items-center mb-2">
+                    <header class="w-full flex justify-between items-center m-10">
                         <h2 class="uppercase text-black-3">Distance Driven</h2>
                     </header>
-                    <section>
+                    <section class="mb-10 mx-10">
                         <h3 class="text-4xl text-left">158.3<span class="text-2xl">mi</span></h3>
                         <p class="flex items-center text-green text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-up-right" />+14.2%</p>
                     </section>
@@ -27,15 +27,15 @@
             </div>
         </div>
         <Card class="w-1/2">
-            <header class="w-full flex justify-between items-center mb-2">
+            <header class="w-full flex justify-between items-center m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
-            <section>
+            <section class="mb-10 mx-10">
                 <line-chart :chartdata="datacollection" :options="options"/>
             </section>
         </Card>
         <Card class="w-full mt-6">
-            <header class="w-full flex justify-between items-center mb-2">
+            <header class="w-full flex justify-between items-center m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
             <section>
@@ -47,15 +47,20 @@
                 >
                     <l-tile-layer :url="url"></l-tile-layer>
                     <l-circle-marker :lat-lng="[40.730451, -73.959626]" :radius=55></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.725169, -73.987105]" :radius=35></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.731543, -73.907368]" :radius=35></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.715542, -74.011095]" :radius=55></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.738795, -73.990796]" :radius=55></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.737072, -73.929598]" :radius=55></l-circle-marker>
                 </l-map>
             </section>
         </Card>
         <div class="flex w-full mt-6">
             <Card class="w-1/3 mr-6">
-                <header class="w-full flex justify-between items-center mb-8">
+                <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <ul v-if="carList">
+                <ul v-if="carList" class="mb-10 mx-10">
                     <li class="flex justify-between mt-4" v-for="car in carList" :key="car.id">
                         <Avatar class="flex-initial mr-4" :img="car.img" type="simple" :notify="{ text: car.id + 1 }"/>
                         <div class="flex-1">
@@ -70,14 +75,16 @@
                 </ul>
             </Card>
             <Card class="w-1/3 mr-6">
-                <header class="w-full flex justify-between items-center mb-2">
+                <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
+                <section class="mb-10 mx-10"></section>
             </Card>
             <Card class="w-1/3">
-                <header class="w-full flex justify-between items-center mb-2">
+                <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
+                <section class="mb-10 mx-10"></section>
             </Card>
         </div>
     </main>

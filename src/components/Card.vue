@@ -1,8 +1,8 @@
 <template>
-    <aside class="p-10 bg-white shadow-2l">
+    <aside class="bg-white shadow-2l">
         <div class="flex">
             <img v-if="img"
-                 class="mr-10"
+                 class="m-10"
                  :src="img.url"
                  :alt="img.alt"
                  :width="img.width"
