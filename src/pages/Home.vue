@@ -38,20 +38,21 @@
             <header class="w-full flex justify-between items-center m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
-            <section class="overflow-hidden">
+            <section class="overflow-hidden" style="height: 500px;">
                 <l-map
                         ref="map"
-                        style="height: 500px; width: 100%"
+                        style="height: 100%; width: 100%"
                         :zoom="zoom"
+                        @update:zoom="zoomUpdated"
                         :center="center"
                 >
                     <l-tile-layer :url="url"></l-tile-layer>
-                    <l-circle-marker :lat-lng="[40.730451, -73.959626]" :radius=55></l-circle-marker>
-                    <l-circle-marker :lat-lng="[40.725169, -73.987105]" :radius=35></l-circle-marker>
-                    <l-circle-marker :lat-lng="[40.731543, -73.907368]" :radius=35></l-circle-marker>
-                    <l-circle-marker :lat-lng="[40.715542, -74.011095]" :radius=55></l-circle-marker>
-                    <l-circle-marker :lat-lng="[40.738795, -73.990796]" :radius=55></l-circle-marker>
-                    <l-circle-marker :lat-lng="[40.737072, -73.929598]" :radius=55></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.730451, -73.959626]" :radius="largeRadius"></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.725169, -73.987105]" :radius="smallRadius"></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.731543, -73.907368]" :radius="smallRadius"></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.715542, -74.011095]" :radius="largeRadius"></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.738795, -73.990796]" :radius="largeRadius"></l-circle-marker>
+                    <l-circle-marker :lat-lng="[40.737072, -73.929598]" :radius="largeRadius"></l-circle-marker>
                 </l-map>
             </section>
         </Card>
@@ -345,11 +346,19 @@
             }
         ],
         zoom: 14,
+        zoomBase: 14,
+        largeRadius: 55,
+        smallRadius: 35,
         center: [40.721811, -73.991590],
         url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
       }
     },
-    created() {
+    methods: {
+        zoomUpdated (zoom) {
+            this.zoom = zoom;
+            this.largeRadius = (this.largeRadius * this.zoom) / this.zoomBase;
+            this.smallRadius = (this.smallRadius * this.zoom) / this.zoomBase;
+        }
     }
   }
 </script>
