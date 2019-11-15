@@ -7,6 +7,7 @@ This project is made with Vuejs, Vue-cli and TailwindCss
 You can see a little demo here : https://pensive-clarke-f6ea25.netlify.com/
 
 You can find the .studio file based on /design/Velocity Studio
+
 Be indulgent it's a WIP :).
 
 ## Project setup
