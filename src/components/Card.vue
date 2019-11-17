@@ -1,6 +1,6 @@
 <template>
     <aside class="bg-white shadow-2l">
-        <div class="flex">
+        <div v-if="title && content" class="flex">
             <img v-if="img"
                  class="m-10"
                  :src="img.url"

@@ -16,15 +16,15 @@
             >
             </Table>
         </div>
-        <Card class="w-1/4 flex flex-col items-start">
-            <header class="w-full flex justify-between items-center mb-2">
+        <Card class="w-1/4 flex flex-col items-stretch items-start">
+            <header class="flex justify-between items-center m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 <Button rounded class="p-0 text-gray-1 hover:text-black-3">
                     <Icon name="keyboard_control"
-                          class="w-8 h-8 flex-shrink-0" />
+                          class="w-8 h-8 flex-shrink-0" ></Icon>
                 </Button>
             </header>
-            <section class="w-full">
+            <section class="mb-10 mx-10">
                 <MultipleFilter v-for="(filter, index) in filters" :key="index"
                         :type="filter.type"
                         :title="filter.title"
