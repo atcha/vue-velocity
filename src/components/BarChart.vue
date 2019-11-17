@@ -1,9 +1,8 @@
 <script>
-  import { Line } from 'vue-chartjs';
-
+  import { Bar } from 'vue-chartjs';
   export default {
-    extends: Line,
-    name: "LineChart",
+    extends: Bar,
+    name: "BarChart",
     props: ['chartdata', 'options'],
     mounted () {
       this.renderChart(this.chartdata, this.options)

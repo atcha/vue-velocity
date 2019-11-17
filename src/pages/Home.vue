@@ -31,7 +31,7 @@
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
             <section class="mb-10 mx-10">
-                <line-chart :chartdata="datacollection" :options="options"/>
+                <line-chart :chartdata="datacollectionLinear" :options="options"/>
             </section>
         </Card>
         <Card class="w-full mt-6">
@@ -84,7 +84,9 @@
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <section class="mb-10 mx-10"></section>
+                <section class="mb-10 mx-10">
+                    <bar-chart :chartdata="datacollectionBar" :options="options"/>
+                </section>
             </Card>
             <Card class="w-1/3">
                 <header class="w-full flex justify-between items-center m-10">
@@ -98,6 +100,7 @@
 
 <script>
   import Avatar from "../components/Avatar";
+  import BarChart from "../components/BarChart";
   import Card from "../components/Card";
   import LineChart from "../components/LineChart";
   import Icon from "../components/Icon";
@@ -108,6 +111,7 @@
     name: 'home',
     components: {
       Avatar,
+      BarChart,
       Card,
       Icon,
       LineChart,
@@ -131,7 +135,7 @@
         graphCard: {
           title: 'Fleet Activity Map'
         },
-        datacollection: {
+        datacollectionLinear: {
           labels: ['', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
           datasets: [
             {
@@ -221,6 +225,25 @@
                   y: 80
                 }
               ]
+            }
+          ]
+        },
+        datacollectionBar: {
+          labels: ['April', 'May', 'June'],
+          datasets: [
+            {
+              barPercentage: 0.5,
+              categoryPercentage: 0.3,
+              label: 'Comfort',
+              backgroundColor: '#2E5BFF',
+              data: [60, 65, 85]
+            },
+            {
+              barPercentage: 0.5,
+              categoryPercentage: 0.3,
+              label: 'Premium',
+              backgroundColor: '#8C54FF',
+              data: [70, 80, 90]
             }
           ]
         },
