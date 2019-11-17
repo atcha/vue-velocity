@@ -108,13 +108,20 @@
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <section class="mb-10 mx-10"></section>
+                <section class="mb-10 mx-10">
+                    <div class="flex justify-between items-center mb-4" v-for="vehicle in todoVehicles" :key="vehicle.id">
+                        <input class="flex-initial" type="checkbox">
+                        <div class="flex-1 text-left p-4">Vehicle #{{vehicle.id}}</div>
+                        <Alert class="flex-1" type="error" content="Due today"></Alert>
+                    </div>
+                </section>
             </Card>
         </div>
     </main>
 </template>
 
 <script>
+  import Alert from "../components/Alert";
   import Avatar from "../components/Avatar";
   import BarChart from "../components/BarChart";
   import Card from "../components/Card";
@@ -126,6 +133,7 @@
   export default {
     name: 'home',
     components: {
+      Alert,
       Avatar,
       BarChart,
       Card,
@@ -389,6 +397,36 @@
                     src: require('../assets/img/vehicles/bebop.png')
                 }
             }
+        ],
+        todoVehicles: [
+          {
+            id: 11283,
+            validated: false
+          },
+          {
+            id: 11300,
+            validated: false
+          },
+          {
+            id: 10502,
+            validated: false
+          },
+          {
+            id: 12320,
+            validated: false
+          },
+          {
+            id: 14183,
+            validated: false
+          },
+          {
+            id: 15233,
+            validated: false
+          },
+          {
+            id: 15332,
+            validated: false
+          }
         ],
         zoom: 14,
         zoomBase: 14,
