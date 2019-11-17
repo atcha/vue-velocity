@@ -7,20 +7,20 @@
             </Card>
             <div class="flex mt-6">
                 <Card class="mr-6 w-1/2">
-                    <header class="w-full flex justify-between items-center m-10">
+                    <header class="w-full flex justify-between items-center mx-10 mt-10">
                         <h2 class="uppercase text-black-3">Vehicles on track</h2>
                     </header>
                     <section class="mb-10 mx-10">
-                        <h3 class="text-4xl text-left">1,428<span class="text-2xl">cars</span></h3>
+                        <h3 class="text-6xl text-left">1,428<span class="text-2xl">cars</span></h3>
                         <p class="flex items-center text-red text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-down-right" />-7.6%</p>
                     </section>
                 </Card>
                 <Card class="mr-6  w-1/2">
-                    <header class="w-full flex justify-between items-center m-10">
+                    <header class="w-full flex justify-between items-center mx-10 mt-10">
                         <h2 class="uppercase text-black-3">Distance Driven</h2>
                     </header>
                     <section class="mb-10 mx-10">
-                        <h3 class="text-4xl text-left">158.3<span class="text-2xl">mi</span></h3>
+                        <h3 class="text-6xl text-left">158.3<span class="text-2xl">mi</span></h3>
                         <p class="flex items-center text-green text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-up-right" />+14.2%</p>
                     </section>
                 </Card>
@@ -86,6 +86,22 @@
                 </header>
                 <section class="mb-10 mx-10">
                     <bar-chart :chartdata="datacollectionBar" :options="options"/>
+                    <div class="flex justify-between mt-10">
+                        <div>
+                            <h3 class="text-6xl leading-tight text-left">1,744</h3>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full mr-5 bg-primary-normal"></div>
+                                <span class="text-black-3">Comfort</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-6xl text-left">2,312</h3>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full mr-5 bg-purple"></div>
+                                <span class="text-black-3">Premium</span>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </Card>
             <Card class="w-1/3">
