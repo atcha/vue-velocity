@@ -7,7 +7,8 @@
             </div>
             <Slider :min-value="minValue"
                     :max-value="maxValue"
-                    v-model="inputVal"></Slider>
+                    v-model="inputVal">
+            </Slider>
         </template>
         <template v-if="type === 'multiple-select'">
             <div class="flex items-center justify-between mb-2">

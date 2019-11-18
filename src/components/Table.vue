@@ -46,8 +46,8 @@
                         <template v-else>
                             <div v-if="typeof item[column.name] === 'object' " class="flex items-center justify-start">
                                 <Avatar v-if="item[column.name].img" type="simple" :size="avatarSize"
-                                        :img="item[column.name].img" class="mr-3"/>
-                                <Avatar v-else type="simple" :size="avatarSize" class="mr-3"/>
+                                        :img="item[column.name].img" class="mr-3"></Avatar>
+                                <Avatar v-else type="simple" :size="avatarSize" class="mr-3"></Avatar>
                                 <div>
                                     <p class="text-left leading-tight">{{ item[column.name].name }}</p>
                                     <p class="text-left leading-tight text-gray-1">#{{ item[column.name].id }}</p>
