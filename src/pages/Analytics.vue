@@ -1,89 +1,92 @@
 <template>
-    <main class="flex flex-wrap p-20 min-h-screen">
-        <h1 class="text-2xl leading-none text-black-1 mr-2">Analytics</h1>
-        <Card class="w-full mt-6">
-            <header class="w-full flex justify-between items-center m-10">
-                <h2 class="uppercase text-black-3">Fleet activity map</h2>
-            </header>
-            <section class="mb-10 mx-10">
-                <line-chart :chartdata="datacollectionLinear" :options="options" :bg-gradient="gradients"/>
-            </section>
-        </Card>
-        <div class="flex w-full  mt-6">
-            <Card class="w-1/4 mr-6">
-                <header class="w-full flex justify-between items-center mx-10 mt-10">
-                    <icon class="bg-green-light text-green-normal p-3" size="6" name="check" round></icon>
-                </header>
-                <section class="mb-10 mx-10">
-                    <h3 class="text-6xl text-left">$1,428</h3>
-                    <p class="flex items-center text-black-3 text-lg">
-                        Vehicles on track
-                    </p>
-                </section>
-            </Card>
-            <Card class="w-1/4 mr-6">
-                <header class="w-full flex justify-between items-center mx-10 mt-10">
-                    <icon class="bg-blue-light text-blue-normal p-3" size="6" name="location_onplaceroom" round></icon>
-                </header>
-                <section class="mb-10 mx-10">
-                    <h3 class="text-6xl text-left">158.3 mi</h3>
-                    <p class="flex items-center text-black-3 text-lg">
-                        Distance driven
-                    </p>
-                </section>
-            </Card>
-            <Card class="w-1/4 mr-6">
-                <header class="w-full flex justify-between items-center mx-10 mt-10">
-                    <icon class="bg-purple-light text-purple-normal p-3" size="6" name="bolt" round></icon>
-                </header>
-                <section class="mb-10 mx-10">
-                    <h3 class="text-6xl text-left">87.4 kWh</h3>
-                    <p class="flex items-center text-black-3 text-lg">
-                        Energy consumed
-                    </p>
-                </section>
-            </Card>
-            <Card class="w-1/4">
-                <header class="w-full flex justify-between items-center mx-10 mt-10">
-                    <icon class="bg-yellow-light text-yellow-normal p-3" size="6" name="show_chart" round></icon>
-                </header>
-                <section class="mb-10 mx-10">
-                    <h3 class="text-6xl text-left">24.2 h</h3>
-                    <p class="flex items-center text-black-3 text-lg">
-                        Total drive time
-                    </p>
-                </section>
-            </Card>
-        </div>
-        <div class="flex w-full mt-6">
-            <Card class="w-1/3 mr-6">
-                <header class="w-full flex justify-between items-center m-10">
-                    <h2 class="uppercase text-black-3">Fleet activity map</h2>
-                </header>
-                <ul v-if="trips" class="mb-10 mx-10">
-                    <li class="flex justify-between mt-4" v-for="(trip, index) in trips" :key="index">
-                        <div class="flex-1">
-                            <p class="text-left">{{ trip.start }} - {{ trip.end }}</p>
-                            <p class="text-left text-black-3">{{trip.date.toLocaleDateString()}}</p>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-right">{{ trip.price }}</p>
-                            <p class="text-right text-black-3">{{trip.time}}</p>
-                        </div>
-                    </li>
-                </ul>
-            </Card>
-            <Card class="w-2/3">
-                <header class="w-full flex justify-between items-center m-10">
-                    <h2 class="uppercase text-black-3">Fleet activity map</h2>
-                </header>
-
-            </Card>
-        </div>
-    </main>
+	<main class="flex flex-wrap p-20 min-h-screen">
+		<h1 class="text-2xl leading-none text-black-1 mr-2">Analytics</h1>
+		<Card class="w-full mt-6">
+			<header class="w-full flex justify-between items-center m-10">
+				<h2 class="uppercase text-black-3">Fleet activity map</h2>
+			</header>
+			<section class="mb-10 mx-10">
+				<line-chart :chartdata="datacollectionLinear" :options="lineOptions" :bg-gradient="gradients"/>
+			</section>
+		</Card>
+		<div class="flex w-full  mt-6">
+			<Card class="w-1/4 mr-6">
+				<header class="w-full flex justify-between items-center mx-10 mt-10">
+					<icon class="bg-green-light text-green-normal p-3" size="6" name="check" round></icon>
+				</header>
+				<section class="mb-10 mx-10">
+					<h3 class="text-6xl text-left">$1,428</h3>
+					<p class="flex items-center text-black-3 text-lg">
+						Vehicles on track
+					</p>
+				</section>
+			</Card>
+			<Card class="w-1/4 mr-6">
+				<header class="w-full flex justify-between items-center mx-10 mt-10">
+					<icon class="bg-blue-light text-blue-normal p-3" size="6" name="location_onplaceroom" round></icon>
+				</header>
+				<section class="mb-10 mx-10">
+					<h3 class="text-6xl text-left">158.3 mi</h3>
+					<p class="flex items-center text-black-3 text-lg">
+						Distance driven
+					</p>
+				</section>
+			</Card>
+			<Card class="w-1/4 mr-6">
+				<header class="w-full flex justify-between items-center mx-10 mt-10">
+					<icon class="bg-purple-light text-purple-normal p-3" size="6" name="bolt" round></icon>
+				</header>
+				<section class="mb-10 mx-10">
+					<h3 class="text-6xl text-left">87.4 kWh</h3>
+					<p class="flex items-center text-black-3 text-lg">
+						Energy consumed
+					</p>
+				</section>
+			</Card>
+			<Card class="w-1/4">
+				<header class="w-full flex justify-between items-center mx-10 mt-10">
+					<icon class="bg-yellow-light text-yellow-normal p-3" size="6" name="show_chart" round></icon>
+				</header>
+				<section class="mb-10 mx-10">
+					<h3 class="text-6xl text-left">24.2 h</h3>
+					<p class="flex items-center text-black-3 text-lg">
+						Total drive time
+					</p>
+				</section>
+			</Card>
+		</div>
+		<div class="flex w-full mt-6">
+			<Card class="w-1/3 mr-6">
+				<header class="w-full flex justify-between items-center m-10">
+					<h2 class="uppercase text-black-3">Fleet activity map</h2>
+				</header>
+				<ul v-if="trips" class="mb-10 mx-10">
+					<li class="flex justify-between mt-4" v-for="(trip, index) in trips" :key="index">
+						<div class="flex-1">
+							<p class="text-left">{{ trip.start }} - {{ trip.end }}</p>
+							<p class="text-left text-black-3">{{trip.date.toLocaleDateString()}}</p>
+						</div>
+						<div class="flex-1">
+							<p class="text-right">{{ trip.price }}</p>
+							<p class="text-right text-black-3">{{trip.time}}</p>
+						</div>
+					</li>
+				</ul>
+			</Card>
+			<Card class="w-2/3">
+				<header class="w-full flex justify-between items-center m-10">
+					<h2 class="uppercase text-black-3">Fleet activity map</h2>
+				</header>
+				<section class="mb-10 mx-10">
+					<bar-chart :chartdata="datacollectionMixed" :options="mixedOptions"></bar-chart>
+				</section>
+			</Card>
+		</div>
+	</main>
 </template>
 
 <script>
+  import BarChart from "../components/BarChart";
   import Card from "../components/Card";
   import Icon from "../components/Icon";
   import LineChart from "../components/LineChart";
@@ -91,6 +94,7 @@
   export default {
     name: "Analytics",
     components: {
+      BarChart,
       Card,
       Icon,
       LineChart
@@ -307,7 +311,34 @@
             }
           ]
         },
-        options: {
+        datacollectionMixed: {
+          labels: ['Mon', 'Tue', 'Fri', 'Thu', 'Wed', 'Sat', 'Sun'],
+          datasets: [
+            {
+              label: 'Average',
+              borderColor: '#F7C137',
+              fill: false,
+              lineTension: 0,
+              data: [110, 80, 100, 110, 74, 55, 124],
+              type: 'line'
+            },
+            {
+              barPercentage: 0.5,
+              categoryPercentage: 0.3,
+              label: 'Comfort',
+              backgroundColor: '#2E5BFF',
+              data: [82, 65, 75, 130, 55, 62, 120]
+            },
+            {
+              barPercentage: 0.5,
+              categoryPercentage: 0.3,
+              label: 'Premium',
+              backgroundColor: '#8C54FF',
+              data: [90, 75, 80, 60, 45, 117]
+            }
+          ]
+        },
+        lineOptions: {
           responsive: true,
           maintainAspectRatio: false,
           scales: {
@@ -354,6 +385,51 @@
               hoverRadius: 4,
               borderWidth: 3,
               hoverBorderWidth: 3
+            }
+          }
+        },
+        mixedOptions: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            yAxes: [{
+              gridLines: {
+                color: "#B0BAC9",
+                borderDash: [3, 3]
+              },
+              ticks: {
+                suggestedMin: 0,
+                suggestedMax: 125,
+                fontColor: "#B0BAC9"
+              }
+            }],
+            xAxes: [{
+              gridLines: {
+                color: "#B0BAC9",
+                borderDash: [3, 3]
+              },
+              ticks: {
+                fontColor: "#B0BAC9"
+              }
+            }]
+          },
+          legend: {
+            display: true,
+            align: 'end',
+            labels: {
+              boxWidth: 10,
+              usePointStyle: true,
+              padding: 20,
+              fontColor: "#B0BAC9"
+            }
+          },
+          elements: {
+            point: {
+              radius: 5,
+              hoverRadius: 4,
+              borderWidth: 3,
+              hoverBorderWidth: 3,
+              backgroundColor: '#FFF'
             }
           }
         },
