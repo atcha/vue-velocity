@@ -14,12 +14,18 @@ module.exports = {
                 normal: '#D63649',
                 light: 'rgba(214, 54, 73, 0.2)'
             },
-            yellow: '#F7C137',
+            yellow: {
+                normal: '#F7C137',
+                light: 'rgba(247,193,55, 0.2)'
+            },
             blue: {
                 normal: '#00C1D4',
                 light: 'rgba(0,193,212,0.15)'
             },
-            purple: '#8C54FF',
+            purple: {
+                normal: '#8C54FF',
+                light: 'rgba(140,84,255,0.2)'
+            },
             gray: {
                 '0': '#C8C8C8',
                 '1': '#BFC5D2',

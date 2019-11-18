@@ -12,7 +12,7 @@
                     </header>
                     <section class="mb-10 mx-10">
                         <h3 class="text-6xl text-left">1,428<span class="text-2xl">cars</span></h3>
-                        <p class="flex items-center text-red text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-down-right" />-7.6%</p>
+                        <p class="flex items-center text-red-normal text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-down-right" />-7.6%</p>
                     </section>
                 </Card>
                 <Card class="mr-6  w-1/2">
@@ -21,7 +21,7 @@
                     </header>
                     <section class="mb-10 mx-10">
                         <h3 class="text-6xl text-left">158.3<span class="text-2xl">mi</span></h3>
-                        <p class="flex items-center text-green text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-up-right" />+14.2%</p>
+                        <p class="flex items-center text-green-normal text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-up-right" />+14.2%</p>
                     </section>
                 </Card>
             </div>
