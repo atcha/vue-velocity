@@ -5,7 +5,7 @@
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
             <section class="mb-10 mx-10">
-                <line-chart :chartdata="datacollectionLinear" :options="options"/>
+                <line-chart :chartdata="datacollectionLinear" :options="options" :bg-gradient="gradients"/>
             </section>
         </Card>
     </main>
@@ -28,6 +28,7 @@
                         {
                             label: 'Revenue',
                             borderColor: '#2E5BFF',
+                            pointBackgroundColor: '#FFF',
                             fill: true,
                             lineTension: 0,
                             data:[
@@ -108,6 +109,7 @@
                         {
                             label: 'Trips',
                             borderColor: '#8C54FF',
+                            pointBackgroundColor: '#FFF',
                             fill: true,
                             lineTension: 0,
                             data:[
@@ -232,11 +234,22 @@
                             radius: 5,
                             hoverRadius: 4,
                             borderWidth: 3,
-                            hoverBorderWidth: 3,
-                            backgroundColor: "#FFF"
+                            hoverBorderWidth: 3
                         }
                     }
-                }
+                },
+                gradients: [
+                    {
+                        red: '46',
+                        green: '91',
+                        blue: '255'
+                    },
+                    {
+                        red: '140',
+                        green: '84',
+                        blue: '255'
+                    }
+                ]
             }
         },
         mounted() {

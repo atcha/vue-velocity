@@ -4,21 +4,28 @@
   export default {
     extends: Line,
     name: "LineChart",
-    props: ['chartdata', 'options', 'hasGradientBg'],
+    props: ['chartdata', 'options', 'bgGradient'],
     mounted () {
-        let firstGradient, secondGradient = this.$refs.canvas
-            .getContext("2d")
-            .createLinearGradient(0, 0, 0, 450);
-        firstGradient.addColorStop(0, 'rgba(46,91,255, 0.2)');
-        secondGradient.addColorStop(0, 'rgba(140,84,255, 0.2)');
+      if(this.bgGradient) {
+        this.constructGradients(this.bgGradient)
+      }
 
-        // eslint-disable-next-line no-console
-        console.log('ok');
-
-        this.datacollectionLinear.datasets[0].backgroundColor = firstGradient;
-        this.datacollectionLinear.datasets[1].backgroundColor = secondGradient;
       this.renderChart(this.chartdata, this.options);
+    },
+    methods: {
+      constructGradients(gradients) {
+        gradients.forEach((gradient, index) => {
+          let firstGradient = this.$refs.canvas
+              .getContext("2d")
+              .createLinearGradient(0, 0, 0, 450);
 
+          firstGradient.addColorStop(0, "rgba("+gradient.red+","+gradient.green+","+gradient.blue+",0.4)");
+          firstGradient.addColorStop(0.3, "rgba("+gradient.red+","+gradient.green+","+gradient.blue+",0.15)");
+          firstGradient.addColorStop(0.5, "rgba("+gradient.red+","+gradient.green+","+gradient.blue+",0.05)");
+          firstGradient.addColorStop(1, "rgba("+gradient.red+","+gradient.green+","+gradient.blue+",0)");
+          this.chartdata.datasets[index].backgroundColor = firstGradient;
+        })
+      }
     }
   }
 </script>
