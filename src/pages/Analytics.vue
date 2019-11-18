@@ -8,16 +8,65 @@
                 <line-chart :chartdata="datacollectionLinear" :options="options" :bg-gradient="gradients"/>
             </section>
         </Card>
+        <div class="flex w-full">
+            <Card class="w-1/4 mr-6 mt-6">
+                <header class="w-full flex justify-between items-center mx-10 mt-10">
+                    <icon class="bg-green-light text-green-normal p-3" size="6" name="check" round></icon>
+                </header>
+                <section class="mb-10 mx-10">
+                    <h3 class="text-6xl text-left">$1,428</h3>
+                    <p class="flex items-center text-black-3 text-lg">
+                        Vehicles on track
+                    </p>
+                </section>
+            </Card>
+            <Card class="w-1/4 mr-6 mt-6">
+                <header class="w-full flex justify-between items-center mx-10 mt-10">
+                    <icon class="bg-blue-light text-blue-normal p-3" size="6" name="location_onplaceroom" round></icon>
+                </header>
+                <section class="mb-10 mx-10">
+                    <h3 class="text-6xl text-left">158.3 mi</h3>
+                    <p class="flex items-center text-black-3 text-lg">
+                        Distance driven
+                    </p>
+                </section>
+            </Card>
+            <Card class="w-1/4 mr-6 mt-6">
+                <header class="w-full flex justify-between items-center mx-10 mt-10">
+                    <icon class="bg-purple-light text-purple-normal p-3" size="6" name="bolt" round></icon>
+                </header>
+                <section class="mb-10 mx-10">
+                    <h3 class="text-6xl text-left">87.4 kWh</h3>
+                    <p class="flex items-center text-black-3 text-lg">
+                        Energy consumed
+                    </p>
+                </section>
+            </Card>
+            <Card class="w-1/4 mt-6">
+                <header class="w-full flex justify-between items-center mx-10 mt-10">
+                    <icon class="bg-yellow-light text-yellow-normal p-3" size="6" name="show_chart" round></icon>
+                </header>
+                <section class="mb-10 mx-10">
+                    <h3 class="text-6xl text-left">24.2 h</h3>
+                    <p class="flex items-center text-black-3 text-lg">
+                        Total drive time
+                    </p>
+                </section>
+            </Card>
+        </div>
     </main>
 </template>
 
 <script>
     import Card from "../components/Card";
+    import Icon from "../components/Icon";
     import LineChart from "../components/LineChart";
+
     export default {
         name: "Analytics",
         components: {
-            Card ,
+            Card,
+            Icon,
             LineChart
         },
         data() {
@@ -31,7 +80,7 @@
                             pointBackgroundColor: '#FFF',
                             fill: true,
                             lineTension: 0,
-                            data:[
+                            data: [
                                 {
                                     x: 0,
                                     y: 8000
@@ -112,7 +161,7 @@
                             pointBackgroundColor: '#FFF',
                             fill: true,
                             lineTension: 0,
-                            data:[
+                            data: [
                                 {
                                     x: 0,
                                     y: 4800
@@ -203,8 +252,8 @@
                                 fontColor: "#B0BAC9",
                                 callback: (value) => {
                                     let tempVal = value.toString();
-                                    if(tempVal.length >= 4)
-                                        tempVal = tempVal.substring(0,tempVal.length - 3) + 'k ';
+                                    if (tempVal.length >= 4)
+                                        tempVal = tempVal.substring(0, tempVal.length - 3) + 'k ';
                                     return '$' + tempVal;
                                 }
                             }
