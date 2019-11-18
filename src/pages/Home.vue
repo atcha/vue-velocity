@@ -1,7 +1,8 @@
 <template>
     <main class="flex flex-wrap p-20 min-h-screen">
         <div class="w-1/2">
-            <Card class="mr-6" :img="operatingCard.img"
+            <Card class="mr-6"
+                  :img="operatingCard.img"
                   :title="operatingCard.title"
                   :content="operatingCard.content">
             </Card>
@@ -109,11 +110,10 @@
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
                 <section class="mb-10 mx-10">
-                    <div class="flex justify-between items-center mb-4" v-for="vehicle in todoVehicles" :key="vehicle.id">
-                        <input class="flex-initial" type="checkbox">
-                        <div class="flex-1 text-left p-4">Vehicle #{{vehicle.id}}</div>
-                        <Alert class="flex-1" type="error" content="Due today"></Alert>
-                    </div>
+                    <todo-list standard-text="Vehicles #"
+                               :todo-list="todoVehicles"
+                               alert-content="Due today">
+                    </todo-list>
                 </section>
             </Card>
         </div>
@@ -121,19 +121,18 @@
 </template>
 
 <script>
-  import Alert from "../components/Alert";
   import Avatar from "../components/Avatar";
   import BarChart from "../components/BarChart";
   import Card from "../components/Card";
   import LineChart from "../components/LineChart";
   import Icon from "../components/Icon";
+  import TodoList from "../components/TodoList";
 
   import { LMap, LTileLayer, LCircleMarker, LCircle  } from 'vue2-leaflet';
 
   export default {
     name: 'home',
     components: {
-      Alert,
       Avatar,
       BarChart,
       Card,
@@ -142,7 +141,8 @@
       LMap,
       LTileLayer,
       LCircleMarker,
-      LCircle
+      LCircle,
+      TodoList
     },
     data() {
       return {
