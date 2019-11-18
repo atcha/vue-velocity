@@ -85,7 +85,7 @@
             id: 3,
             icon: "#c-icon-service",
             title: "Service",
-            url: "/services"
+            url: "/service-reminders"
           },
           {
             id: 4,

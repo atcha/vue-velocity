@@ -22,6 +22,11 @@ const router = new Router({
             path: '/vehicles',
             name: 'vehicles',
             component: () => import('./pages/Vehicles.vue')
+        },
+        {
+            path: '/service-reminders',
+            name: 'serviceReminders',
+            component: () => import('./pages/ServiceReminders.vue')
         }
     ]
 });
