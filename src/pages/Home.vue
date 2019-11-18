@@ -7,20 +7,20 @@
             </Card>
             <div class="flex mt-6">
                 <Card class="mr-6 w-1/2">
-                    <header class="w-full flex justify-between items-center m-10">
+                    <header class="w-full flex justify-between items-center mx-10 mt-10">
                         <h2 class="uppercase text-black-3">Vehicles on track</h2>
                     </header>
                     <section class="mb-10 mx-10">
-                        <h3 class="text-4xl text-left">1,428<span class="text-2xl">cars</span></h3>
+                        <h3 class="text-6xl text-left">1,428<span class="text-2xl">cars</span></h3>
                         <p class="flex items-center text-red text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-down-right" />-7.6%</p>
                     </section>
                 </Card>
                 <Card class="mr-6  w-1/2">
-                    <header class="w-full flex justify-between items-center m-10">
+                    <header class="w-full flex justify-between items-center mx-10 mt-10">
                         <h2 class="uppercase text-black-3">Distance Driven</h2>
                     </header>
                     <section class="mb-10 mx-10">
-                        <h3 class="text-4xl text-left">158.3<span class="text-2xl">mi</span></h3>
+                        <h3 class="text-6xl text-left">158.3<span class="text-2xl">mi</span></h3>
                         <p class="flex items-center text-green text-lg"><Icon class="w-6 h-6 mr-2" name="arrow-up-right" />+14.2%</p>
                     </section>
                 </Card>
@@ -31,7 +31,7 @@
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
             <section class="mb-10 mx-10">
-                <line-chart :chartdata="datacollection" :options="options"/>
+                <line-chart :chartdata="datacollectionLinear" :options="options"/>
             </section>
         </Card>
         <Card class="w-full mt-6">
@@ -84,20 +84,46 @@
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <section class="mb-10 mx-10"></section>
+                <section class="mb-10 mx-10">
+                    <bar-chart :chartdata="datacollectionBar" :options="options"/>
+                    <div class="flex justify-between mt-10">
+                        <div>
+                            <h3 class="text-6xl leading-tight text-left">1,744</h3>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full mr-5 bg-primary-normal"></div>
+                                <span class="text-black-3">Comfort</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-6xl text-left">2,312</h3>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full mr-5 bg-purple"></div>
+                                <span class="text-black-3">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </Card>
             <Card class="w-1/3">
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <section class="mb-10 mx-10"></section>
+                <section class="mb-10 mx-10">
+                    <div class="flex justify-between items-center mb-4" v-for="vehicle in todoVehicles" :key="vehicle.id">
+                        <input class="flex-initial" type="checkbox">
+                        <div class="flex-1 text-left p-4">Vehicle #{{vehicle.id}}</div>
+                        <Alert class="flex-1" type="error" content="Due today"></Alert>
+                    </div>
+                </section>
             </Card>
         </div>
     </main>
 </template>
 
 <script>
+  import Alert from "../components/Alert";
   import Avatar from "../components/Avatar";
+  import BarChart from "../components/BarChart";
   import Card from "../components/Card";
   import LineChart from "../components/LineChart";
   import Icon from "../components/Icon";
@@ -107,7 +133,9 @@
   export default {
     name: 'home',
     components: {
+      Alert,
       Avatar,
+      BarChart,
       Card,
       Icon,
       LineChart,
@@ -131,7 +159,7 @@
         graphCard: {
           title: 'Fleet Activity Map'
         },
-        datacollection: {
+        datacollectionLinear: {
           labels: ['', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
           datasets: [
             {
@@ -221,6 +249,25 @@
                   y: 80
                 }
               ]
+            }
+          ]
+        },
+        datacollectionBar: {
+          labels: ['April', 'May', 'June'],
+          datasets: [
+            {
+              barPercentage: 0.5,
+              categoryPercentage: 0.3,
+              label: 'Comfort',
+              backgroundColor: '#2E5BFF',
+              data: [60, 65, 85]
+            },
+            {
+              barPercentage: 0.5,
+              categoryPercentage: 0.3,
+              label: 'Premium',
+              backgroundColor: '#8C54FF',
+              data: [70, 80, 90]
             }
           ]
         },
@@ -350,6 +397,36 @@
                     src: require('../assets/img/vehicles/bebop.png')
                 }
             }
+        ],
+        todoVehicles: [
+          {
+            id: 11283,
+            validated: false
+          },
+          {
+            id: 11300,
+            validated: false
+          },
+          {
+            id: 10502,
+            validated: false
+          },
+          {
+            id: 12320,
+            validated: false
+          },
+          {
+            id: 14183,
+            validated: false
+          },
+          {
+            id: 15233,
+            validated: false
+          },
+          {
+            id: 15332,
+            validated: false
+          }
         ],
         zoom: 14,
         zoomBase: 14,

@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-8">
+    <div class="mt-8 w-full">
         <template v-if="type === 'slider'">
             <div class="flex items-center justify-between mb-2">
                 <h3 class="text-black-1">{{ title }}</h3>

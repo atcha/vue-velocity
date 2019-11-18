@@ -6,8 +6,14 @@ module.exports = {
                 normal: '#2E5BFF',
                 light: 'rgba(46,91,255,0.2)'
             },
-            green: '#33AC2E',
-            red: '#D63649',
+            green: {
+                normal: '#33AC2E',
+                light: 'rgba(51, 172, 46, 0.2)'
+            },
+            red: {
+                normal: '#D63649',
+                light: 'rgba(214, 54, 73, 0.2)'
+            },
             yellow: '#F7C137',
             blue: {
                 normal: '#00C1D4',
