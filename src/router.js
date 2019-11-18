@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './pages/Home.vue';
-import Vehicles from "./pages/Vehicles";
 
 Vue.use(Router);
 
@@ -13,12 +11,17 @@ const router = new Router({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: () => import('./pages/Home.vue')
+        },
+        {
+            path: '/analytics',
+            name: 'analytics',
+            component: () => import('./pages/Analytics.vue')
         },
         {
             path: '/vehicles',
             name: 'vehicles',
-            component: Vehicles
+            component: () => import('./pages/Vehicles.vue')
         }
     ]
 });
