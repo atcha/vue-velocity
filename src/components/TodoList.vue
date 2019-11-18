@@ -1,26 +1,50 @@
 <template>
     <div>
-        <div v-for="todo in todoList" :key="todo.id" class="flex justify-between items-center mb-4">
-            <input class="flex-initial" type="checkbox">
-            <div class="flex-1 text-left p-4">{{standardText}} {{todo.id}}</div>
-            <Alert class="flex-1" type="error" :content="AlertContent"></Alert>
+        <div class="overflow-hidden" v-for="todo in todoList" :key="todo.id">
+            <transition name="slide-fade">
+                <div v-if="!todo.validated" class="flex justify-between items-center mb-4">
+                    <input @input="validateTodo(todo)" class="flex-initial" type="checkbox"/>
+                    <div class="flex-1 text-left p-4">{{standardText}} {{todo.id}}</div>
+                    <Alert class="flex-1" :type="todo.alertType" :content="AlertContent"></Alert>
+                </div>
+            </transition>
         </div>
     </div>
 </template>
 
 <script>
     import Alert from "../components/Alert";
+
     export default {
         name: "TodoList",
-        components: { Alert },
+        components: {Alert},
         props: {
             todoList: Array,
             standardText: String,
             AlertContent: String
+        },
+        methods: {
+            validateTodo(todo) {
+                todo.alertType = 'succes';
+                setTimeout(() => {
+                    todo.validated = true;
+                }, 300)
+            }
         }
     }
 </script>
 
 <style scoped>
+    .slide-fade-enter-active {
+        transition: all .3s ease-in;
+    }
 
+    .slide-fade-leave-active {
+        transition: all .4s ease-out;
+    }
+
+    .slide-fade-enter, .slide-fade-leave-to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 </style>

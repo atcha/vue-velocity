@@ -13,7 +13,7 @@
         let returnClass = '';
         switch (this.type) {
           case 'succes':
-            returnClass = 'text-green-normal bg-gree-light';
+            returnClass = 'text-green-normal bg-green-light';
             break;
           case 'info':
             break;

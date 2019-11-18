@@ -401,31 +401,38 @@
         todoVehicles: [
           {
             id: 11283,
-            validated: false
+            validated: false,
+            alertType: 'error'
           },
           {
             id: 11300,
-            validated: false
+            validated: false,
+            alertType: 'error'
           },
           {
             id: 10502,
-            validated: false
+            validated: false,
+            alertType: 'error'
           },
           {
             id: 12320,
-            validated: false
+            validated: false,
+            alertType: 'error'
           },
           {
             id: 14183,
-            validated: false
+            validated: false,
+            alertType: 'error'
           },
           {
             id: 15233,
-            validated: false
+            validated: false,
+            alertType: 'error'
           },
           {
             id: 15332,
-            validated: false
+            validated: false,
+            alertType: 'error'
           }
         ],
         zoom: 14,
