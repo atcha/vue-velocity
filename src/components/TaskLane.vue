@@ -1,11 +1,15 @@
 <template>
     <div>
-        <h3 class="uppercase text-gray-1 text-left">{{ title }} <span class="rounded-full px-2 py-1 bg-primary-light text-primary-normal text-xs leading-none">{{itemCount}}</span></h3>
+        <h3 class="uppercase text-gray-1 text-left">{{ title }} <span
+                class="rounded-full px-2 py-1 bg-primary-light text-primary-normal text-xs leading-none">{{itemCount}}</span>
+        </h3>
         <div class="mt-3">
-            <draggable v-model="draggables" :options="{ group: 'default' }">
-                <div v-for="item in items" :key="item.id">
-                    <item class="mb-3" :item="item"></item>
-                </div>
+            <draggable v-model="draggables" :options="dragOptions">
+                <transition-group type="transition" name="flip-list">
+                    <div v-for="item in items" :key="item.id">
+                        <item class="mb-3" :item="item"></item>
+                    </div>
+                </transition-group>
             </draggable>
         </div>
     </div>
@@ -14,6 +18,7 @@
 <script>
     import Draggable from 'vuedraggable';
     import TaskCard from "./TaskCard";
+
     export default {
         name: "TaskLane",
         components: {
@@ -21,6 +26,16 @@
             draggable: Draggable
         },
         props: ['items', 'title', 'id'],
+        data() {
+            return {
+                dragOptions: {
+                    animation: 200,
+                    group: "description",
+                    disabled: false,
+                    ghostClass: "ghost"
+                }
+            }
+        },
         computed: {
             itemCount() {
                 if (!this.items) return '';
@@ -42,5 +57,11 @@
 </script>
 
 <style scoped>
-
+    .ghost {
+        opacity: 0.5;
+        background: #c8ebfb;
+    }
+    .flip-list-move {
+        transition: transform 0.5s;
+    }
 </style>

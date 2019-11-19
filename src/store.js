@@ -21,6 +21,20 @@ export default new Vuex.Store({
                     price: 120,
                     info: "Engine Check-up",
                     date: "May 2"
+                },
+                {
+                    id: 5,
+                    name: "Eagle",
+                    price: 180,
+                    info: "Tire replacement",
+                    date: "June 6"
+                },
+                {
+                    id: 6,
+                    name: "Bebop",
+                    price: 1400,
+                    info: "Monthly service",
+                    date: "June 12"
                 }
             ],
             waiting: [
