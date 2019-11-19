@@ -4,7 +4,8 @@ import { Icon } from 'leaflet';
 import '@/assets/css/tailwind.css';
 import 'leaflet/dist/leaflet.css';
 
-import router from './router'
+import router from './router';
+import store from './store';
 
 Vue.config.productionTip = false
 
@@ -20,6 +21,7 @@ Icon.Default.mergeOptions({
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
 
