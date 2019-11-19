@@ -4,10 +4,13 @@
                 class="rounded-full px-2 py-1 bg-primary-light text-primary-normal text-xs leading-none">{{itemCount}}</span>
         </h3>
         <div class="mt-3">
-            <draggable v-model="draggables" :options="dragOptions">
-                <transition-group type="transition" name="flip-list">
+            <draggable v-model="draggables"
+                       :options="dragOptions"
+                       @start="drag = true"
+                       @end="drag = false">
+                <transition-group type="transition" :name="!drag ? 'flip-list' : null">
                     <div v-for="item in items" :key="item.id">
-                        <item class="mb-3" :item="item"></item>
+                        <item :item="item" :group="id"></item>
                     </div>
                 </transition-group>
             </draggable>
@@ -33,7 +36,8 @@
                     group: "description",
                     disabled: false,
                     ghostClass: "ghost"
-                }
+                },
+                drag: false
             }
         },
         computed: {
