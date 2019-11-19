@@ -1,0 +1,79 @@
+/* Cachons la case à cocher */
+form p {
+    position: relative; /* permet de positionner la checkbox cachée */
+}
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    /* Cache la checkbox sans
+       la désactiver pour les
+       lecteurs d'écran */
+    position: absolute;
+    left: 0;
+    opacity: 0.01;
+}
+
+/* on prépare le label */
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position: relative; /* permet de positionner les pseudo-éléments */
+    padding-left: 2.3em; /* fait un peu d'espace pour notre case à venir */
+    font-size: 1.05em; /* Label un peu plus gros */
+    line-height: 1.7;
+    cursor: pointer;    /* affiche un curseur adapté */
+}
+
+/* Aspect de la case */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    content: '';
+    @apply absolute left-0 top-0 w-5 h-5 border border-solid border-black-3 bg-white rounded;
+    box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 rgba(46,91,255,0.2);
+    transition: all .275s;
+}
+
+/* Aspect de la coche */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    content: '✔';
+    @apply absolute text-2xl text-primary-normal;
+    top: .28em;
+    left: .08em;
+    line-height: 0;
+    transition: all .2s;
+}
+
+/* Aspect non cochée */
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+
+/* Aspect cochée */
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+    box-shadow: none;
+    border-color: #bbb;
+    background-color: #e9e9e9;
+}
+
+/* Disabled checked */
+[type="checkbox"]:disabled:checked + label:after {
+    color: #777;
+}
+
+[type="checkbox"]:disabled + label {
+    color: #aaa;
+}
+
+/* Accessibility focus */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+    box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 rgba(46,91,255,0.2);
+}

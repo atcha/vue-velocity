@@ -3,8 +3,10 @@
         <div class="overflow-hidden" v-for="todo in todoList" :key="todo.id">
             <transition name="slide-fade">
                 <div v-if="!todo.validated" class="flex justify-between items-center mb-4">
-                    <input @input="validateTodo(todo)" class="flex-initial" type="checkbox"/>
-                    <div class="flex-1 text-left p-4">{{standardText}} {{todo.id}}</div>
+                    <p>
+                        <input :id="todo.id" @input="validateTodo(todo)" class="flex-initial" type="checkbox"/>
+                        <label :for="todo.id">{{standardText}} {{todo.id}}</label>
+                    </p>
                     <Alert class="flex-1" :type="todo.alertType" :content="AlertContent"></Alert>
                 </div>
             </transition>
@@ -35,6 +37,7 @@
 </script>
 
 <style scoped>
+    @import '../assets/css/components/checkboxes.css';
     .slide-fade-enter-active {
         transition: all .3s ease-in;
     }
