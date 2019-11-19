@@ -1,5 +1,5 @@
 <template>
-    <div :class="cardClass" class="mb-3 p-5 flex bg-white shadow-2l">
+    <div :class="cardClass" class="p-5 flex bg-white shadow-2l cursor-move">
         <div class="flex-1">
             <p class="text-left">{{ item.name }}</p>
             <p class="text-left text-black-3">{{ item.info }}</p>
@@ -32,8 +32,6 @@
                         cardClass += 'border-yellow-normal';
                         break;
                 }
-                // eslint-disable-next-line no-console
-                console.log(cardClass);
                 return cardClass;
             }
         }
