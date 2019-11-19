@@ -4,7 +4,7 @@ Components library based on velocity UI kit by InVision : https://www.invisionap
 
 This project is made with Vuejs, Vue-cli and TailwindCss
 other packages used :
-- postcss, postcss-import, purgecss(only for production);
+- postcss, postcss-import, purgecss(only for production, usefull to reduce tailwindcss css file size);
 - vue-router ;
 - vuex ;
 - vue-chartjs (and chartjs ofc) ;
