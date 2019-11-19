@@ -3,10 +3,18 @@
 Components library based on velocity UI kit by InVision : https://www.invisionapp.com/inside-design/design-resources/design-system-dashboard-ui-kit/
 
 This project is made with Vuejs, Vue-cli and TailwindCss
+other packages used :
+- postcss, postcss-import, purgecss(only for production);
+- vue-router ;
+- vuex ;
+- vue-chartjs (and chartjs ofc) ;
+- vue2-leaflet (and leaflet ofc);
+- vuedraggrable.
 
 You can see a little demo here : https://pensive-clarke-f6ea25.netlify.com/
 
 You can find the .studio file based on /design/Velocity Studio
+
 
 Be indulgent it's a WIP :).
 
