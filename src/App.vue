@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="h-full">
+  <div id="app" class="min-h-screen">
     <Nav :menu-list-item="menuListItems" :user="user"></Nav>
     <header class="bg-white flex justify-between px-20 border-b border-gray-3 border-solid">
       <a class="inline-flex items-center" to="/">
@@ -41,7 +41,7 @@
         </Button>
       </div>
     </header>
-    <router-view />
+    <router-view class="min-h-full" />
     <SideBar :is-visible="isOpenSideBar"></SideBar>
   </div>
 </template>
@@ -134,7 +134,6 @@
     text-align: center;
     color: #2c3e50;
     display: grid;
-    height: 100%;
     background-color: #F4F6FC;
     grid-template-columns: auto 1fr;
     grid-template-rows: 80px 1fr ;

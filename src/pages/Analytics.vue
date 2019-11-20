@@ -1,5 +1,5 @@
 <template>
-	<main class="flex flex-wrap p-20 min-h-screen">
+	<main class="flex flex-wrap p-20">
 		<h1 class="text-2xl leading-none text-black-1 mr-2">Analytics</h1>
 		<Card class="w-full mt-6">
 			<header class="w-full flex justify-between items-center m-10">

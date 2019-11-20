@@ -1,5 +1,5 @@
 <template>
-    <main class="flex flex-wrap p-20 min-h-screen">
+    <main class="flex flex-wrap p-20">
         <div class="w-1/2">
             <Card class="mr-6"
                   :img="operatingCard.img"

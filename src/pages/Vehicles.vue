@@ -1,5 +1,5 @@
 <template>
-    <main class="flex items-start p-20 min-h-screen">
+    <main class="flex items-start p-20">
         <div class="flex flex-col w-3/4 mr-4">
             <div class="mb-4 flex justify-between items-start">
                 <div class="flex items-end">
