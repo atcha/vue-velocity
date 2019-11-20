@@ -98,7 +98,7 @@
                         <div>
                             <h3 class="text-6xl text-left">2,312</h3>
                             <div class="flex items-center">
-                                <div class="w-4 h-4 rounded-full mr-5 bg-purple"></div>
+                                <div class="w-4 h-4 rounded-full mr-5 bg-purple-normal"></div>
                                 <span class="text-black-3">Premium</span>
                             </div>
                         </div>

@@ -3,7 +3,7 @@
         <div class="overflow-hidden" v-for="todo in todoList" :key="todo.id">
             <transition name="slide-fade">
                 <div v-if="!todo.validated" class="flex justify-between items-center mb-4">
-                    <p>
+                    <p class="mr-4">
                         <input :id="todo.id" @input="validateTodo(todo)" class="flex-initial" type="checkbox"/>
                         <label :for="todo.id">{{standardText}} {{todo.id}}</label>
                     </p>
