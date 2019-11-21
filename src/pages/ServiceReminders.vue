@@ -8,7 +8,7 @@
             <task-lane class="w-1/4" id="serviced" title="Fully serviced" :items="servicedItems"></task-lane>
         </div>
         <div class="flex justify-between w-full">
-            <card class="w-2/3">
+            <card class="w-2/3 mr-6">
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
@@ -33,20 +33,39 @@
                     </l-map>
                 </section>
             </card>
+            <div class="w-1/3 flex flex-col">
+                <card class="mb-6 w-full">
+                    <header class="w-full flex justify-between items-center m-10">
+                        <h2 class="uppercase text-black-3">Fleet activity map</h2>
+                    </header>
+                    <section class="mb-10 mx-10">
+                        <doughnut-chart :chartdata="doughnutData" :options="doughnutOptions"></doughnut-chart>
+                    </section>
+                </card>
+                <card class="w-full">
+                    <header class="w-full flex justify-between items-center m-10">
+                        <h2 class="uppercase text-black-3">Fleet activity map</h2>
+                    </header>
+                    <section class="mb-10 mx-10">
+                    </section>
+                </card>
+            </div>
         </div>
     </main>
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import {mapState} from 'vuex';
     import Card from "../components/Card";
+    import DoughnutChart from "../components/DoughnutChart";
     import TaskLane from "../components/TaskLane";
-    import { LMap, LTileLayer, LCircleMarker, LCircle  } from 'vue2-leaflet';
+    import {LMap, LTileLayer, LCircleMarker, LCircle} from 'vue2-leaflet';
 
     export default {
         name: "ServiceReminders",
         components: {
             Card,
+            DoughnutChart,
             LMap,
             LTileLayer,
             LCircleMarker,
@@ -146,7 +165,41 @@
                         lng: -117.7358131,
                         radius: largeRadius
                     }
-                ]
+                ],
+                doughnutData: {
+                    labels: ['Fully serviced', 'In service', 'Waiting', 'Service needed'],
+                    datasets: [{
+                        weight: 5,
+                        hoverBorderWidth: 10,
+                        borderWidth: 0,
+                        hoverBorderColor: ['#F7C137', '#00C1D4', '#8C54FF','#2E5BFF'],
+                        hoverBackgroundColor: ['#F7C137', '#00C1D4', '#8C54FF','#2E5BFF'],
+                        backgroundColor: ['#F7C137', '#00C1D4', '#8C54FF','#2E5BFF'],
+                        data: [57.8, 5, 20, 17.2 ]
+                    }]
+                },
+                doughnutOptions: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutoutPercentage: 80,
+                    animation: {
+                        animateScale: true
+                    },
+                    legend: {
+                        display: true,
+                        position: 'right',
+                        align: 'center',
+                        labels: {
+                            boxWidth: 10,
+                            usePointStyle: true,
+                            padding: 30,
+                            fontColor: "#2E384D"
+                        }
+                    },
+                    tooltips: {
+
+                    }
+                },
             }
         },
         computed: mapState({
@@ -156,7 +209,7 @@
             servicedItems: s => s.items.serviced
         }),
         methods: {
-            zoomUpdated (zoom) {
+            zoomUpdated(zoom) {
                 this.largeRadius = (this.largeRadius * zoom) / this.zoom;
                 this.smallRadius = (this.smallRadius * zoom) / this.zoom;
                 this.circle.radius = (this.circle.radius * zoom) / this.zoom;
