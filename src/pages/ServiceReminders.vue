@@ -197,7 +197,25 @@
                         }
                     },
                     tooltips: {
-
+                        callbacks: {
+                            title: (tooltipItem, data) => {
+                                let dataset = data.datasets[0];
+                                let percent = (dataset.data[tooltipItem[0].index] / dataset._meta[0].total) * 100;
+                                return percent + '%';
+                            },
+                            label: (tooltipItem, data) => {
+                                return data['labels'][tooltipItem['index']];
+                            }
+                        },
+                        position: 'custom',
+                        backgroundColor: 'transparent',
+                        titleFontSize: 48,
+                        titleFontColor: '#2E384D',
+                        titleAlign: 'center',
+                        bodyFontColor: '#B0BAC9',
+                        bodyAlign: 'center',
+                        bodyFontSize: 12,
+                        displayColors: false
                     }
                 },
             }
