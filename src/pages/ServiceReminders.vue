@@ -47,6 +47,19 @@
                         <h2 class="uppercase text-black-3">Fleet activity map</h2>
                     </header>
                     <section class="mb-10 mx-10">
+                        <ul v-if="carList">
+                            <li class="flex justify-between mt-4" v-for="car in carList" :key="car.id">
+                                <Avatar class="flex-initial mr-4" :img="car.img" type="simple" :notify="{ text: car.id + 1 }"/>
+                                <div class="flex-1">
+                                    <p class="text-left">{{ car.name }}</p>
+                                    <p class="text-left text-black-3">{{ car.model }}</p>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-right">${{car.price}}</p>
+                                    <p class="text-right text-black-3">{{car.distance}} miles</p>
+                                </div>
+                            </li>
+                        </ul>
                     </section>
                 </card>
             </div>
@@ -56,6 +69,7 @@
 
 <script>
     import {mapState} from 'vuex';
+    import Avatar from "../components/Avatar";
     import Card from "../components/Card";
     import DoughnutChart from "../components/DoughnutChart";
     import TaskLane from "../components/TaskLane";
@@ -64,6 +78,7 @@
     export default {
         name: "ServiceReminders",
         components: {
+            Avatar,
             Card,
             DoughnutChart,
             LMap,
@@ -166,16 +181,48 @@
                         radius: largeRadius
                     }
                 ],
+                carList: [
+                    {
+                        id: 0,
+                        name: 'Bebop',
+                        model: 'Volvo Intellisafe',
+                        price: '6,432',
+                        distance: '1,232',
+                        img: {
+                            src: require('../assets/img/vehicles/bebop.png')
+                        }
+                    },
+                    {
+                        id: 1,
+                        name: 'Bebop',
+                        model: 'Volvo Intellisafe',
+                        price: '6,432',
+                        distance: '1,232',
+                        img: {
+                            src: require('../assets/img/vehicles/bebop.png')
+                        }
+                    },
+                    {
+                        id: 2,
+                        name: 'Bebop',
+                        model: 'Volvo Intellisafe',
+                        price: '6,432',
+                        distance: '1,232',
+                        img: {
+                            src: require('../assets/img/vehicles/bebop.png')
+                        }
+                    }
+                ],
                 doughnutData: {
                     labels: ['Fully serviced', 'In service', 'Waiting', 'Service needed'],
                     datasets: [{
                         weight: 5,
                         hoverBorderWidth: 10,
                         borderWidth: 0,
-                        hoverBorderColor: ['#F7C137', '#00C1D4', '#8C54FF','#2E5BFF'],
-                        hoverBackgroundColor: ['#F7C137', '#00C1D4', '#8C54FF','#2E5BFF'],
-                        backgroundColor: ['#F7C137', '#00C1D4', '#8C54FF','#2E5BFF'],
-                        data: [57.8, 5, 20, 17.2 ]
+                        hoverBorderColor: ['#F7C137', '#00C1D4', '#8C54FF', '#2E5BFF'],
+                        hoverBackgroundColor: ['#F7C137', '#00C1D4', '#8C54FF', '#2E5BFF'],
+                        backgroundColor: ['#F7C137', '#00C1D4', '#8C54FF', '#2E5BFF'],
+                        data: [57.8, 5, 20, 17.2]
                     }]
                 },
                 doughnutOptions: {
