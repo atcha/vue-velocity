@@ -3,7 +3,7 @@
         <h1 class="text-2xl flex-initial leading-none text-black-1 mr-2">Service Reminders</h1>
         <div class="flex justify-between w-full">
             <task-lane class="w-1/4 mr-6" id="needed" title="Service needed" :items="neededItems"></task-lane>
-            <task-lane class="w-1/4 mr-6" id="waiting" title="Wainting" :items="waintingItems"></task-lane>
+            <task-lane class="w-1/4 mr-6" id="waiting" title="Waiting" :items="waintingItems"></task-lane>
             <task-lane class="w-1/4 mr-6" id="service" title="In service" :items="serviceItems"></task-lane>
             <task-lane class="w-1/4" id="serviced" title="Fully serviced" :items="servicedItems"></task-lane>
         </div>
@@ -20,12 +20,12 @@
                             :center="center"
                     >
                         <l-tile-layer :url="url"></l-tile-layer>
-                        <l-circle-marker v-for="(city, index) in cities"
-                                         :key="index"
+                        <l-circle-marker v-for="city in cities"
+                                         :key="city.id"
                                          :lat-lng="[city.lat, city.lng]"
                                          :radius="city.radius"></l-circle-marker>
                         <l-circle v-for="(city, index) in cities"
-                                  :key="index"
+                                  :key="index + 100"
                                   :lat-lng="[city.lat, city.lng]"
                                   :radius="circle.radius"
                                   :fill="true"
@@ -103,78 +103,91 @@
                 url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
                 cities: [
                     {
+                        id: 0,
                         name: 'Albuquerque',
                         lat: 35.0841034,
                         lng: -106.6509851,
                         radius: smallRadius
                     },
                     {
+                        id: 1,
                         name: 'Oklahoma City',
                         lat: 35.4729886,
                         lng: -97.5170536,
                         radius: largeRadius
                     },
                     {
+                        id: 2,
                         name: 'Odessa',
                         lat: 31.831471448087633,
                         lng: -102.37947624999998,
                         radius: smallRadius
                     },
                     {
+                        id: 3,
                         name: 'Atlanta',
                         lat: 33.7490987,
                         lng: -84.3901849,
                         radius: smallRadius
                     },
                     {
+                        id: 4,
                         name: 'Lexington',
                         lat: 38.0464066,
                         lng: -84.4970393,
                         radius: largeRadius
                     },
                     {
+                        id: 5,
                         name: 'Pittsburgh',
                         lat: 40.4416941,
                         lng: -79.9900861,
                         radius: smallRadius
                     },
                     {
+                        id: 6,
                         name: 'Saint Louis',
                         lat: 38.6268039,
                         lng: -90.1994097,
                         radius: smallRadius
                     },
                     {
+                        id: 7,
                         name: 'North Platte',
                         lat: 41.1238873,
                         lng: -100.7654232,
                         radius: smallRadius
                     },
                     {
+                        id: 8,
                         name: 'Rapid City',
                         lat: 44.081176,
                         lng: -103.228006,
                         radius: smallRadius
                     },
                     {
+                        id: 9,
                         name: 'Detroit Lakes',
                         lat: 46.817181,
                         lng: -95.845325,
                         radius: smallRadius
                     },
                     {
+                        id: 10,
                         name: 'Missoula',
                         lat: 46.8700801,
                         lng: -113.9952796,
                         radius: smallRadius
                     },
                     {
+                        id: 11,
                         name: 'Farson',
                         lat: 42.165831,
                         lng: -109.4104384,
                         radius: smallRadius
                     },
                     {
+                        id: 12,
                         name: 'Winnemucca',
                         lat: 40.9729176,
                         lng: -117.7358131,
