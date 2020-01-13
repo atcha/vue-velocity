@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="min-h-screen">
-    <Nav :menu-list-item="menuListItems" :user="user"></Nav>
-    <header class="bg-white flex justify-between px-20 border-b border-gray-3 border-solid">
+    <Nav class="hidden lg:block" :menu-list-item="menuListItems" :user="user"></Nav>
+    <header class="bg-white flex justify-between px-2 lg:px-20 border-b border-gray-3 border-solid">
+      <Nav class="md:hidden" mode="mobile" :menu-list-item="menuListItems" :user="user"></Nav>
       <a class="inline-flex items-center" to="/">
         <img alt="Velocity" src="./assets/logo.png" height="24" width="22">
         <span class="ml-3">Velocity</span>
@@ -136,14 +137,27 @@
     display: grid;
     background-color: #F4F6FC;
     grid-template-columns: auto 1fr;
-    grid-template-rows: 80px 1fr ;
-    grid-template-areas: "nav head"
-    "nav main";
+    grid-template-rows: 1fr;
+    grid-template-areas: "head"
+    "main";
   }
   #app > header {
     grid-area: head;
   }
   main {
     grid-area: main;
+  }
+
+  @media (min-width: 768px) {
+    #app {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: 80px 1fr ;
+      grid-template-areas: "nav head"
+      "nav main";
+    }
+
+    #app > header {
+      grid-area: head;
+    }
   }
 </style>

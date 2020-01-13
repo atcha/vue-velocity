@@ -1,7 +1,7 @@
 <template>
     <main class="flex flex-wrap items-start p-20">
         <h1 class="text-2xl flex-initial leading-none text-black-1 mr-2">Service Reminders</h1>
-        <div class="flex justify-between w-full">
+        <div class="flex justify-between items-start w-full">
             <task-lane class="w-1/4 mr-6" id="needed" title="Service needed" :items="neededItems"></task-lane>
             <task-lane class="w-1/4 mr-6" id="waiting" title="Waiting" :items="waintingItems"></task-lane>
             <task-lane class="w-1/4 mr-6" id="service" title="In service" :items="serviceItems"></task-lane>

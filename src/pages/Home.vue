@@ -1,12 +1,12 @@
 <template>
-    <main class="flex flex-wrap p-20">
-        <div class="w-1/2">
-            <Card class="mr-6"
+    <main class="w-screen flex flex-wrap p-2 lg:p-20">
+        <div class="mb-6 lg:w-1/2 lg:mb-0">
+            <Card class="lg:mr-6"
                   :img="operatingCard.img"
                   :title="operatingCard.title"
                   :content="operatingCard.content">
             </Card>
-            <div class="flex mt-6">
+            <div class="hidden lg:flex lg:mt-6">
                 <Card class="mr-6 w-1/2">
                     <header class="w-full flex justify-between items-center mx-10 mt-10">
                         <h2 class="uppercase text-black-3">Vehicles on track</h2>
@@ -27,7 +27,7 @@
                 </Card>
             </div>
         </div>
-        <Card class="w-1/2">
+        <Card class="w-full lg:w-1/2">
             <header class="w-full flex justify-between items-center m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
@@ -62,8 +62,8 @@
                 </l-map>
             </section>
         </Card>
-        <div class="flex w-full mt-6">
-            <Card class="w-1/3 mr-6">
+        <div class="w-full flex flex-col mt-6 lg:flex-row">
+            <Card class="w-full mr-0 mb-6 lg:w-1/3 lg:mr-6 lg:mb-0">
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
@@ -81,7 +81,7 @@
                     </li>
                 </ul>
             </Card>
-            <Card class="w-1/3 mr-6">
+            <Card class="w-full mr-0 mb-6 lg:w-1/3 lg:mr-6 lg:mb-0">
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
@@ -105,7 +105,7 @@
                     </div>
                 </section>
             </Card>
-            <Card class="w-1/3">
+            <Card class="w-full md:w-1/3">
                 <header class="w-full flex justify-between items-center m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
