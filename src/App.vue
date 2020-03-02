@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="min-h-screen">
+  <div id="app" class="min-h-screen overflow-auto">
     <Nav class="hidden lg:block" :menu-list-item="menuListItems" :user="user"></Nav>
     <header class="bg-white flex justify-between px-2 lg:px-20 border-b border-gray-3 border-solid">
       <Nav class="md:hidden" mode="mobile" :menu-list-item="menuListItems" :user="user"></Nav>
