@@ -1,5 +1,5 @@
 <template>
-    <main class="w-full flex flex-wrap p-2 lg:p-20">
+    <main class="flex flex-wrap p-2 lg:p-20">
         <div class="mb-6 lg:w-1/2 lg:mb-0">
             <Card class="lg:mr-6"
                   :img="operatingCard.img"
@@ -28,15 +28,15 @@
             </div>
         </div>
         <Card class="w-full lg:w-1/2">
-            <header class="w-full flex justify-between items-center m-10">
+            <header class="w-full flex justify-between items-center m-5 md:m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
-            <section class="mb-10 mx-10">
+            <section class="mb-5 mx-5 md:mb-10 md:mx-10">
                 <line-chart :chartdata="datacollectionLinear" :options="options"/>
             </section>
         </Card>
         <Card class="w-full mt-6">
-            <header class="w-full flex justify-between items-center m-10">
+            <header class="w-full flex justify-between items-center m-5 md:m-10">
                 <h2 class="uppercase text-black-3">Fleet activity map</h2>
             </header>
             <section class="overflow-hidden" style="height: 500px;">
@@ -64,10 +64,10 @@
         </Card>
         <div class="w-full flex flex-col mt-6 lg:flex-row">
             <Card class="w-full mr-0 mb-6 lg:w-1/3 lg:mr-6 lg:mb-0">
-                <header class="w-full flex justify-between items-center m-10">
+                <header class="w-full flex justify-between items-center m-5 md:m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <ul v-if="carList" class="mb-10 mx-10">
+                <ul v-if="carList" class="mb-5 mx-5 md:mb-10 md:mx-10">
                     <li class="flex justify-between mt-4" v-for="car in carList" :key="car.id">
                         <Avatar class="flex-initial mr-4" :img="car.img" type="simple" :notify="{ text: car.id + 1 }"/>
                         <div class="flex-1">
@@ -82,23 +82,23 @@
                 </ul>
             </Card>
             <Card class="w-full mr-0 mb-6 lg:w-1/3 lg:mr-6 lg:mb-0">
-                <header class="w-full flex justify-between items-center m-10">
+                <header class="w-full flex justify-between items-center m-5 md:m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <section class="mb-10 mx-10">
+                <section class="mb-5 mx-5 md:mb-10 md:mx-10">
                     <bar-chart :chartdata="datacollectionBar" :options="options"/>
-                    <div class="flex justify-between mt-10">
+                    <div class="flex justify-between mt-5 md:mt-10">
                         <div>
-                            <h3 class="text-6xl leading-tight text-left">1,744</h3>
+                            <h3 class="text-xl md:text-6xl leading-tight text-left">1,744</h3>
                             <div class="flex items-center">
-                                <div class="w-4 h-4 rounded-full mr-5 bg-primary-normal"></div>
+                                <div class="w-4 h-4 rounded-full mr-3 bg-primary-normal md:mr-5"></div>
                                 <span class="text-black-3">Comfort</span>
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-6xl text-left">2,312</h3>
+                            <h3 class="text-xl md:text-6xl text-left">2,312</h3>
                             <div class="flex items-center">
-                                <div class="w-4 h-4 rounded-full mr-5 bg-purple-normal"></div>
+                                <div class="w-4 h-4 rounded-full mr-3 bg-purple-normal md:mr-5"></div>
                                 <span class="text-black-3">Premium</span>
                             </div>
                         </div>
@@ -106,10 +106,10 @@
                 </section>
             </Card>
             <Card class="w-full md:w-1/3">
-                <header class="w-full flex justify-between items-center m-10">
+                <header class="w-full flex justify-between items-center m-5 md:m-10">
                     <h2 class="uppercase text-black-3">Fleet activity map</h2>
                 </header>
-                <section class="mb-10 mx-10">
+                <section class="mb-5 mx-5 md:mb-10 md:mx-10">
                     <todo-list standard-text="Vehicles #"
                                :todo-list="todoVehicles"
                                alert-content="Due today">

@@ -18,7 +18,7 @@
                     :professionnal-function="this.user.professionnalFunction">
             </avatar>
         </div>
-        <div class="c-nav__menu" :class="[ mode === 'mobile' ? 'is-mobile' : '' ]">
+        <div class="c-nav__menu flex flex-col justify-between" :class="[ mode === 'mobile' ? 'is-mobile' : '' ]">
             <ul>
                 <li class="c-nav__menuitem" v-for="item in menuListItem" :key="item.id">
                     <router-link :to="item.url"
@@ -34,7 +34,7 @@
                     </router-link>
                 </li>
             </ul>
-            <a @click="isClosed = !isClosed" class="absolute bottom-0 left-0 p-5 w-full cursor-pointer md:hidden">Close</a>
+            <a @click="isClosed = !isClosed" class="p-5 bg-primary-light text-primary w-full cursor-pointer md:hidden">Close</a>
         </div>
     </nav>
 </template>

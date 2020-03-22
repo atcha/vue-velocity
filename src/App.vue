@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="min-h-screen overflow-auto">
-    <Nav class="hidden lg:block" :menu-list-item="menuListItems" :user="user"></Nav>
+    <Nav class="hidden md:block" :menu-list-item="menuListItems" :user="user"></Nav>
     <header class="bg-white flex justify-between px-2 lg:px-20 border-b border-gray-3 border-solid">
       <Nav class="md:hidden" mode="mobile" :menu-list-item="menuListItems" :user="user"></Nav>
-      <a class="inline-flex items-center" to="/">
+      <a class="flex items-center" to="/">
         <img alt="Velocity" src="./assets/logo.png" height="24" width="22">
         <span class="ml-3">Velocity</span>
       </a>
@@ -136,7 +136,7 @@
     color: #2c3e50;
     display: grid;
     background-color: #F4F6FC;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 100%;
     grid-template-rows: 1fr;
     grid-template-areas: "head"
     "main";
