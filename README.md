@@ -11,7 +11,7 @@ other packages used :
 - vue2-leaflet (and leaflet ofc);
 - vuedraggrable.
 
-You can see a little demo here : https://pensive-clarke-f6ea25.netlify.com/
+You can see a little demo here : https://vue-velocity.netlify.app
 
 You can find the .studio file based on /design/Velocity Studio
 
